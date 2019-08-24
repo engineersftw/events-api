@@ -1,6 +1,6 @@
-# NodeJS Backend Starter Kit
+# Engineers.SG Events API
 
-This is a starter kit with the following characteristics:
+This is based on a starter kit with the following characteristics:
 
 - Local Port Number: 3001
 - Language: [NodeJS](https://nodejs.org/en/) (with NPM)
