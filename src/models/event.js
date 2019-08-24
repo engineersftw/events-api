@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     name: DataTypes.STRING,
@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     platform: DataTypes.STRING,
     latitude: DataTypes.DOUBLE,
     longitude: DataTypes.DOUBLE
-  }, {});
-  Event.associate = function(models) {
+  }, {})
+  Event.associate = function (models) {
     // associations can be defined here
-  };
-  return Event;
-};
+  }
+  return Event
+}
