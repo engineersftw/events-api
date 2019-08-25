@@ -18,9 +18,8 @@ beforeEach(() => {
 describe('HarvesterService', () => {
   test('#fetchGroups', () => {
     return nockVCR('allGroups.json', async () => {
-      let allGroups = []
       await service.prepareService()
-      allGroups = await service.fetchGroups()
+      const allGroups = await service.fetchGroups()
       expect(allGroups.length).toEqual(667)
     })
   })

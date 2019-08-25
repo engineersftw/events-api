@@ -7,7 +7,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "jsfmt": "eslint \"src/**/*.js\" --fix",
-    "jslint": "eslint \"src/**/*.js\""
+    "jslint": "eslint \"src/**/*.js\"",
+    "harvest:groups": "node src/tasks/harvest_groups.js"
   },
   "repository": {
     "type": "git",
