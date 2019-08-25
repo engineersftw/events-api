@@ -12,11 +12,6 @@ nockBack.setMode('record')
 
 let service
 
-// Overwrite env var for testing
-process.env.MEETUP_OAUTH_KEY = 'my_key'
-process.env.MEETUP_OAUTH_SECRET = 'my_secret'
-process.env.MEETUP_REFRESH_TOKEN = 'my_refresh_token'
-
 beforeEach(() => {
   service = new HarvesterService({
     meetup: {
@@ -28,7 +23,7 @@ beforeEach(() => {
 })
 
 describe('HarvesterService', () => {
-  test.only('#fetchGroups', () => {
+  test('#fetchGroups', () => {
     return nockBack('allGroups.json').then(({ nockDone }) => {
       return (async () => {
         let allGroups = []

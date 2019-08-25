@@ -14,7 +14,6 @@ class HarvesterService {
       })
       
       const newTokenResponse = await this.meetupService.refreshToken(this.meetup.refreshToken)
-      console.log(newTokenResponse)
       if (!newTokenResponse) {
         throw new Error('Unable to refresh token')
       }
@@ -33,7 +32,6 @@ class HarvesterService {
     let groupsResponse
   
     while(true) {
-      console.log(`Fetching groups page ${page}`)
       groupsResponse = await this.meetupService.fetchApi('/find/groups', {
         country: 'SG',
         location: 'Singapore',
@@ -46,12 +44,9 @@ class HarvesterService {
       if (groupsResponse.status === 200) {  
         const groups = groupsResponse.data
 
-        console.log('Found items:', groups.length)
         allGroups.push(...groups)
 
-        console.log(`Number of items after fetching page ${page} : ${allGroups.length}`)
         if (allGroups.length >= parseInt(groupsResponse.headers['x-total-count'])) {
-          console.log('No next page.')
           break
         }
   
