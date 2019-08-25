@@ -10,7 +10,6 @@ class MeetupService {
     this.consumerSecret = options.consumerSecret
     this.redirectUri = options.redirectUri
     this.accessToken = null
-    this.refreshToken = null
   }
 
   authorizeLink () {
@@ -20,10 +19,6 @@ class MeetupService {
   setAccessToken (newToken) {
     this.accessToken = newToken
     this.axiosInstance('api').defaults.headers.common['Authorization'] = `Bearer ${this.accessToken}`
-  }
-
-  setRefreshToken (newToken) {
-    this.refreshToken = newToken
   }
 
   async fetchAccessToken (code) {
@@ -88,7 +83,7 @@ class MeetupService {
 
     this.axios[type] = axios.create({
       baseURL: (type === 'auth' ? this.authDomain : this.apiDomain),
-      timeout: 2000
+      timeout: 30000
     })
 
     return this.axios[type]
