@@ -1,14 +1,7 @@
-require('dotenv').config()
 jest.setTimeout(30000);
 
 const HarvesterService = require('./harvester_service')
-const nock = require('nock')
-const nockBack = require('nock').back
-
-const path = require('path')
-
-nockBack.fixtures = path.join(__dirname, '../../fixtures')
-nockBack.setMode('record')
+const nockVCR = require('../../test/nock_vcr')
 
 let service
 
@@ -24,13 +17,11 @@ beforeEach(() => {
 
 describe('HarvesterService', () => {
   test('#fetchGroups', () => {
-    return nockBack('allGroups.json').then(({ nockDone }) => {
-      return (async () => {
-        let allGroups = []
-        await service.prepareService()
-        allGroups = await service.fetchGroups()
-        expect(allGroups.length).toEqual(667)
-      })().then(nockDone)
+    return nockVCR('allGroups.json', async () => {
+      let allGroups = []
+      await service.prepareService()
+      allGroups = await service.fetchGroups()
+      expect(allGroups.length).toEqual(667)
     })
   })
 })
