@@ -78,6 +78,10 @@ class MeetupService {
     }
   }
 
+  static isLegit(_) {
+    return true
+  }
+
   axiosInstance (type) {
     if (this.axios[type]) { return this.axios[type] }
 
