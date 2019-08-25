@@ -19,7 +19,6 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
-if (process.env.NODE_ENV === 'dev')
-  app.use('/oauth', authRouter)
+if (process.env.NODE_ENV === 'dev') { app.use('/oauth', authRouter) }
 
 module.exports = app

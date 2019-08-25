@@ -1,4 +1,4 @@
-jest.setTimeout(30000);
+jest.setTimeout(30000)
 
 const HarvesterService = require('./harvester_service')
 const nockVCR = require('../../test/nock_vcr')

@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const debug = require('debug')('app:auth')
 const MeetupService = require('../services/meetup_service')
 
 const meetupService = new MeetupService({
