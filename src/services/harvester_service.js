@@ -55,6 +55,35 @@ class HarvesterService {
 
     return allGroups
   }
+
+  async fetchGroupEvents (group) {
+    let offset = 0
+    const allEvents = []
+    let groupsEventsResponse
+
+    while (true) {
+      groupsEventsResponse = await this.meetupService.fetchApi(`/${group.urlname}/events`, {
+        page: 200,
+        offset: offset
+      })
+
+      if (groupsEventsResponse.status === 200) {
+        const groups = groupsEventsResponse.data
+
+        allEvents.push(...groups)
+
+        if (allEvents.length >= parseInt(groupsEventsResponse.headers['x-total-count'])) {
+          break
+        }
+
+        offset++
+      } else {
+        break
+      }
+    }
+
+    return allEvents
+  }
 }
 
 module.exports = HarvesterService

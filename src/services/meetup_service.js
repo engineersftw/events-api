@@ -78,7 +78,7 @@ class MeetupService {
     }
   }
 
-  static isLegit(_) {
+  static isLegit (_) {
     return true
   }
 

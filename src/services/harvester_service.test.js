@@ -23,4 +23,13 @@ describe('HarvesterService', () => {
       expect(allGroups.length).toEqual(667)
     })
   })
+
+  test('#fetchGroupEvents', () => {
+    return nockVCR('groupEvents.json', async () => {
+      const group = { urlname: 'SGInnovate' }
+      await service.prepareService()
+      const allEvents = await service.fetchGroupEvents(group)
+      expect(allEvents.length).toEqual(7)
+    })
+  })
 })

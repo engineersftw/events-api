@@ -106,8 +106,8 @@ describe('MeetupService', () => {
 
   test('#isLegit', () => {
     const validGroup = {
-      "name": "SGInnovate",
-      "description": "<p>At SGInnovate, we launch, prove and scale 'deep tech' products borne out of science research. We believe Singapore has the resources and capabilities to 'tackle hard problems' that matter to people around the world. SGInnovate has been established to help ambitious and capable people to build 'technology-intensive' products borne out of science research.</p>\n<p>Join our community and get involved in innovation workshops, panel discussions and industry-leading events on AI, machine learning, medtech, robotics, blockchain, etc.</p>"
+      name: 'SGInnovate',
+      description: "<p>At SGInnovate, we launch, prove and scale 'deep tech' products borne out of science research. We believe Singapore has the resources and capabilities to 'tackle hard problems' that matter to people around the world. SGInnovate has been established to help ambitious and capable people to build 'technology-intensive' products borne out of science research.</p>\n<p>Join our community and get involved in innovation workshops, panel discussions and industry-leading events on AI, machine learning, medtech, robotics, blockchain, etc.</p>"
     }
 
     expect(MeetupService.isLegit(validGroup)).toBeTruthy()

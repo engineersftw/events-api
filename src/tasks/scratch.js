@@ -205,7 +205,7 @@ const newGroup = {
 //   })
 
 async function scratch () {
-  const group = await db.Group.findOne({ where: { name: 'SGInnovate' } })
+  const group = await db.Group.findOne({ where: { name: newGroup.name } })
 
   console.log(group)
 }
