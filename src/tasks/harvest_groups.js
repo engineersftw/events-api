@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const HarvesterService = require('../services/harvester_service')
-const db = require('../models/index')
+// const db = require('../models/index')
 
 const harvester = new HarvesterService({
   meetup: {
@@ -20,30 +20,31 @@ async function harvest () {
 
     allGroups.forEach(item => {
       console.log('Group Name:', item.name)
-      db.Group
-        .findOrCreate({
-          where: {
-            platform: 'meetup',
-            platform_identifer: `${item.id}`
-          },
-          defaults: {
-            name: item.name,
-            platform: 'meetup',
-            platform_identifer: `${item.id}`
-          }
-        })
-        .then(([group, created]) => {
-          group.update({
-            name: item.name,
-            status: item.status,
-            link: item.link,
-            urlname: item.urlname,
-            description: item.description,
-            members: item.members
-          }).then(() => {
-            console.log('Updated the record for ', item.name)
-          })
-        })
+
+      // db.Group
+      //   .findOrCreate({
+      //     where: {
+      //       platform: 'meetup',
+      //       platform_identifer: `${item.id}`
+      //     },
+      //     defaults: {
+      //       name: item.name,
+      //       platform: 'meetup',
+      //       platform_identifer: `${item.id}`
+      //     }
+      //   })
+      //   .then(([group, created]) => {
+      //     group.update({
+      //       name: item.name,
+      //       status: item.status,
+      //       link: item.link,
+      //       urlname: item.urlname,
+      //       description: item.description,
+      //       members: item.members
+      //     }).then(() => {
+      //       console.log('Updated the record for ', item.name)
+      //     })
+      //   })
     })
   } catch (error) {
     console.log('Harvest Error:', error)
