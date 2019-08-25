@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const HarvesterService = require('../services/harvester_service')
+const db = require('../models/index')
 
 const harvester = new HarvesterService({
   meetup: {
@@ -10,19 +11,42 @@ const harvester = new HarvesterService({
   }
 })
 
-async function harvest() {
+async function harvest () {
   try {
     await harvester.prepareService()
-  
-    let allGroups = await harvester.fetchGroups()
+
+    const allGroups = await harvester.fetchGroups()
     console.log('Total number of groups:', allGroups.length)
 
-    allGroups.forEach( item => {
+    allGroups.forEach(item => {
       console.log('Group Name:', item.name)
+      db.Group
+        .findOrCreate({
+          where: {
+            platform: 'meetup',
+            platform_identifer: `${item.id}`
+          },
+          defaults: {
+            name: item.name,
+            platform: 'meetup',
+            platform_identifer: `${item.id}`
+          }
+        })
+        .then(([group, created]) => {
+          group.update({
+            name: item.name,
+            status: item.status,
+            link: item.link,
+            urlname: item.urlname,
+            description: item.description,
+            members: item.members
+          }).then(() => {
+            console.log('Updated the record for ', item.name)
+          })
+        })
     })
-
   } catch (error) {
-    console.log("Harvest Error:", error)
+    console.log('Harvest Error:', error)
   }
 }
 

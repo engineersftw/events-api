@@ -25,7 +25,6 @@ class HarvesterService {
 
   async fetchGroups () {
     let offset = 0
-    let page = 1
     const allGroups = []
     let groupsResponse
 
@@ -48,7 +47,6 @@ class HarvesterService {
           break
         }
 
-        page++
         offset++
       } else {
         break
