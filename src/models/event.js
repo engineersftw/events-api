@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     start_time: DataTypes.DATE,
     end_time: DataTypes.DATE,
     platform: DataTypes.STRING,
+    platform_identifier: DataTypes.STRING,
     latitude: DataTypes.DOUBLE,
     longitude: DataTypes.DOUBLE
   }, {})

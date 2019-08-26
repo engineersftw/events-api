@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     members: DataTypes.INTEGER,
     platform: { type: DataTypes.STRING, allowNull: false },
-    platform_identifer: { type: DataTypes.STRING, allowNull: false },
+    platform_identifier: { type: DataTypes.STRING, allowNull: false },
     blacklisted: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
     active: { type: DataTypes.BOOLEAN, defaultValue: true, allowNull: false }
   }, {})
