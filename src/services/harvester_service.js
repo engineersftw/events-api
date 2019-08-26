@@ -29,6 +29,17 @@ class HarvesterService {
   }
 
   async fetchGroupEvents (group) {
+    const allGroupEvents = []
+
+    try {
+      const meetupGroupEvents = await this.meetupHarvester.fetchGroupEvents(group)
+
+      allGroupEvents.push(...meetupGroupEvents)
+    } catch (err) {
+      console.log('Harvester Error', err)
+    }
+
+    return allGroupEvents
   }
 }
 

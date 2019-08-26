@@ -9,6 +9,7 @@
     "jsfmt": "eslint \"src/**/*.js\" --fix",
     "jslint": "eslint \"src/**/*.js\"",
     "harvest:groups": "node src/tasks/harvest_groups.js",
+    "harvest:events": "node src/tasks/harvest_events.js",
     "scratch": "node src/tasks/scratch.js"
   },
   "repository": {
