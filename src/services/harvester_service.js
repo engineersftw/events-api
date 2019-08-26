@@ -15,12 +15,14 @@ class HarvesterService {
   }
 
   async fetchGroups () {
-    const allGroups = []
+    const allGroups = {
+      meetup: []
+    }
 
     try {
       const meetupGroups = await this.meetupHarvester.fetchGroups()
 
-      allGroups.push(...meetupGroups)
+      allGroups.meetup.push(...meetupGroups)
     } catch (err) {
       console.log('Harvester Error', err)
     }
@@ -29,17 +31,23 @@ class HarvesterService {
   }
 
   async fetchGroupEvents (group) {
-    const allGroupEvents = []
+    let allGroupEvents = []
 
     try {
-      const meetupGroupEvents = await this.meetupHarvester.fetchGroupEvents(group)
-
-      allGroupEvents.push(...meetupGroupEvents)
+      switch(group.platform) {
+        case 'meetup':
+          const meetupGroupEvents = await this.meetupHarvester.fetchGroupEvents(group)
+          allGroupEvents.push(...meetupGroupEvents)
+          break
+      }
     } catch (err) {
       console.log('Harvester Error', err)
     }
 
-    return allGroupEvents
+    return {
+      group: group,
+      events: allGroupEvents
+    }
   }
 }
 

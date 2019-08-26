@@ -20,16 +20,17 @@ describe('HarvesterService', () => {
     return nockVCR('allGroups.json', async () => {
       await service.prepareService()
       const allGroups = await service.fetchGroups()
-      expect(allGroups.length).toEqual(667)
+      expect(allGroups.meetup.length).toEqual(667)
     })
   })
 
-  test.skip('#fetchGroupEvents', () => {
+  test('#fetchGroupEvents', () => {
     return nockVCR('groupEvents.json', async () => {
-      const group = { urlname: 'SGInnovate' }
+      const group = { urlname: 'SGInnovate', platform: 'meetup' }
       await service.prepareService()
       const allEvents = await service.fetchGroupEvents(group)
-      expect(allEvents.length).toEqual(7)
+      expect(allEvents.group).toEqual(group)
+      expect(allEvents.events.length).toEqual(7)
     })
   })
 })

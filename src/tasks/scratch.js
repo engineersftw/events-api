@@ -205,9 +205,12 @@ const newGroup = {
 //   })
 
 async function scratch () {
-  const group = await db.Group.findOne({ where: { name: newGroup.name } })
+  // const group = await db.Group.findOne({ where: { name: newGroup.name } })
 
-  console.log(group.name)
+  // console.log(group.name)
+
+  const group = db.Group.build({name: 'Junkie'})
+  console.log(group)
 }
 
 scratch()
