@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const HarvesterService = require('../services/harvester_service')
 const db = require('../models/index')
+const MeetupService = require('../services/meetup_service')
 
 const harvester = new HarvesterService({
   meetup: {
@@ -37,7 +38,8 @@ async function harvest () {
             link: item.link,
             urlname: item.urlname,
             description: item.description,
-            members: item.members
+            members: item.members,
+            blacklisted: !MeetupService.isLegit(item)
           }).then(() => {
             console.log('Updated the record for ', item.name)
           })

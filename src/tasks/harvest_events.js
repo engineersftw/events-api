@@ -12,7 +12,7 @@ const harvester = new HarvesterService({
   }
 })
 
-async function harvest() {
+async function harvest () {
   console.log('Fetching all active groups')
   const allActiveGroups = await db.Group.findAll({
     where: {
@@ -21,9 +21,9 @@ async function harvest() {
     }
   })
   console.log(`Found ${allActiveGroups.length} groups...`)
-  
+
   try {
-    let allGroupEvents = []
+    const allGroupEvents = []
     await harvester.prepareService()
 
     const eventHarvesters = []
@@ -51,7 +51,14 @@ async function harvest() {
               }
             })
             .then(([event, created]) => {
-              let location = item.venue ? `${item.venue.name}, ${item.venue.address_1}` : ''
+              let location = ''
+              if (item.venue) {
+                location = item.venue.name
+
+                if (!!item.venue.address_1) {
+                  location += `, ${item.venue.address_1}`
+                }
+              }
 
               const startTime = moment(`${item.local_date} ${item.local_time} +08:00`, 'YYYY-MM-DD HH:mm Z')
               const endTime = moment(startTime).add(item.duration, 'milliseconds')
@@ -81,7 +88,7 @@ async function harvest() {
       .finally(() => {
         console.log('Done.')
       })
-  } catch(err) {
+  } catch (err) {
     console.log('Harvester Error:', err)
   }
 }

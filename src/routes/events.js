@@ -17,10 +17,13 @@ router.get('/', function (req, res, next) {
         start_time: {
           [Op.gte]: startDate.toDate()
         }
-      }
+      },
+      order: [
+        ['start_time', 'ASC']
+      ]
     })
     .then(events => {
-      const eventListing = events.map( event => {
+      const eventListing = events.map(event => {
         return {
           id: event.platform_identifier,
           name: event.name,
@@ -40,10 +43,10 @@ router.get('/', function (req, res, next) {
 
       res.json({
         meta: {
-            generated_at: moment().toISOString(),
-            location: "Singapore",
-            api_version: "v1",
-            total_events: events.length
+          generated_at: moment().toISOString(),
+          location: 'Singapore',
+          api_version: 'v1',
+          total_events: events.length
         },
         events: eventListing
       })

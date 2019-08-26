@@ -78,8 +78,23 @@ class MeetupService {
     }
   }
 
-  static isLegit (_) {
-    return true
+  static isLegit (group) {
+    const { name } = group
+    const tokens = name.split(' ')
+
+    if (tokens.length === 0) { return false }
+
+    let validity = true
+
+    tokens.forEach( (token) => {
+      if (MeetupService.BLACKLIST_TOKENS.includes(token.toLowerCase())) { validity = false }
+
+      MeetupService.BLACKLIST_TOKENS.forEach( (blToken) => {
+        if (token.toLowerCase().includes(blToken)) { validity = false }
+      })
+    })
+
+    return validity
   }
 
   axiosInstance (type) {
@@ -91,6 +106,11 @@ class MeetupService {
     })
 
     return this.axios[type]
+  }
+
+  static get BLACKLIST_TOKENS() {
+    return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
+    'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
   }
 }
 

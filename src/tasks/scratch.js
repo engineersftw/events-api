@@ -209,7 +209,7 @@ async function scratch () {
 
   // console.log(group.name)
 
-  const group = db.Group.build({name: 'Junkie'})
+  const group = db.Group.build({ name: 'Junkie' })
   console.log(group)
 }
 

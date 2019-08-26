@@ -31,10 +31,10 @@ class HarvesterService {
   }
 
   async fetchGroupEvents (group) {
-    let allGroupEvents = []
+    const allGroupEvents = []
 
     try {
-      switch(group.platform) {
+      switch (group.platform) {
         case 'meetup':
           const meetupGroupEvents = await this.meetupHarvester.fetchGroupEvents(group)
           allGroupEvents.push(...meetupGroupEvents)
