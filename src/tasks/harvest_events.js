@@ -35,8 +35,9 @@ async function harvest() {
     Promise.all(eventHarvesters)
       .then((allEventResponses) => {
         allEventResponses.forEach((eventResponse) => {
-          allGroupEvents.push(...eventResponse)
+          allGroupEvents.push(...eventResponse.events)
         })
+
         console.log(`Harvested ${allGroupEvents.length} events in total`)
         allGroupEvents.forEach((event) => {
           console.log('Event:', event.name)

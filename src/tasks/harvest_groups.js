@@ -16,9 +16,9 @@ async function harvest () {
     await harvester.prepareService()
 
     const allGroups = await harvester.fetchGroups()
-    console.log('Total number of groups:', allGroups.length)
+    console.log('Total number of groups:', allGroups.meetup.length)
 
-    allGroups.forEach(item => {
+    allGroups.meetup.forEach(item => {
       console.log('Group Name:', item.name)
 
       // db.Group
