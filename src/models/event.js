@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     platform: DataTypes.STRING,
     platform_identifier: DataTypes.STRING,
     latitude: DataTypes.DOUBLE,
-    longitude: DataTypes.DOUBLE
+    longitude: DataTypes.DOUBLE,
+    active: DataTypes.BOOLEAN
   }, {})
   Event.associate = function (models) {
     // associations can be defined here

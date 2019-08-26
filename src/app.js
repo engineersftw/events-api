@@ -8,6 +8,7 @@ const cors = require('cors')
 
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
+const eventsRouter = require('./routes/events')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
+app.use('/events', eventsRouter)
 if (process.env.NODE_ENV === 'dev') { app.use('/oauth', authRouter) }
 
 module.exports = app
