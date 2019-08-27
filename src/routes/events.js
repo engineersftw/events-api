@@ -25,37 +25,41 @@ async function fetchEvents (startDate) {
 
 /* List all events */
 router.get('/', async function (req, res, next) {
-  const startDate = moment().hour(0).minute(0)
-  const events = await fetchEvents(startDate)
+  try {
+    const startDate = moment().hour(0).minute(0)
+    const events = await fetchEvents(startDate)
 
-  const eventListing = events.map(event => {
-    return {
-      id: event.platform_identifier,
-      name: event.name,
-      description: event.description,
-      location: event.location,
-      url: event.url,
-      group_id: event.group_id,
-      group_name: event.group_name,
-      group_url: event.group_url,
-      formatted_time: moment(event.start_time).tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
-      unix_start_time: moment(event.start_time).unix(),
-      start_time: moment(event.start_time).tz('Asia/Singapore').format(),
-      end_time: moment(event.end_time).tz('Asia/Singapore').format(),
-      platform: event.platform,
-      rsvp_count: event.rsvp_count
-    }
-  })
+    const eventListing = events.map(event => {
+      return {
+        id: event.platform_identifier,
+        name: event.name,
+        description: event.description,
+        location: event.location,
+        url: event.url,
+        group_id: event.group_id,
+        group_name: event.group_name,
+        group_url: event.group_url,
+        formatted_time: moment(event.start_time).tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
+        unix_start_time: moment(event.start_time).unix(),
+        start_time: moment(event.start_time).tz('Asia/Singapore').format(),
+        end_time: moment(event.end_time).tz('Asia/Singapore').format(),
+        platform: event.platform,
+        rsvp_count: event.rsvp_count
+      }
+    })
 
-  res.json({
-    meta: {
-      generated_at: moment().toISOString(),
-      location: 'Singapore',
-      api_version: 'v1',
-      total_events: events.length
-    },
-    events: eventListing
-  })
+    res.json({
+      meta: {
+        generated_at: moment().toISOString(),
+        location: 'Singapore',
+        api_version: 'v1',
+        total_events: events.length
+      },
+      events: eventListing
+    })
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
 })
 
 router.get('/cal', async function (req, res, next) {
