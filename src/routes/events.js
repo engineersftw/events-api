@@ -67,7 +67,7 @@ router.get('/cal', async function (req, res, next) {
       return {
         uid: `${event.platform}_${event.platform_identifier}`,
         summary: event.name,
-        description: htmlToText.fromString(event.description),
+        description: htmlToText.fromString(event.description) + `\n\nRSVP Here: ${event.url}\nRSVP Count: ${event.rsvp_count}`,
         location: event.location,
         url: event.url,
         organizer: { name: event.group_name, email: 'events@engineers.sg' },
