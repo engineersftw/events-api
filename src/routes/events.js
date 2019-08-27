@@ -5,7 +5,8 @@ const db = require('../models/index')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const moment = require('moment')
-// const ical = require('ical-generator')
+const ical = require('ical-generator')
+const htmlToText = require('html-to-text')
 
 async function fetchEvents (startDate) {
   return db.Event
@@ -55,6 +56,40 @@ router.get('/', async function (req, res, next) {
     },
     events: eventListing
   })
+})
+
+router.get('/cal', async function (req, res, next) {
+  try {
+    const startDate = moment().hour(0).minute(0)
+    const events = await fetchEvents(startDate)
+
+    const eventListing = events.map(event => {
+      return {
+        uid: `${event.platform}_${event.platform_identifier}`,
+        summary: event.name,
+        description: htmlToText.fromString(event.description),
+        location: event.location,
+        url: event.url,
+        organizer: { name: event.group_name, email: 'events@engineers.sg' },
+        timestamp: event.start_time,
+        start: event.start_time,
+        end: event.end_time
+      }
+    })
+
+    const cal = ical({
+      domain: 'engineers.sg',
+      prodId: { company: 'Engineers.SG', product: 'events-calendar', language: 'EN' },
+      name: 'Engineers.SG',
+      timezone: 'Asia/Singapore',
+      description: 'Free tech events in Singapore'
+    })
+    cal.events(eventListing)
+
+    res.set('Content-Type', 'text/calendar; charset=utf-8').send(cal.toString())
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
 })
 
 module.exports = router
