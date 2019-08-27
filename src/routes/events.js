@@ -38,7 +38,8 @@ router.get('/', function (req, res, next) {
           unix_start_time: moment(event.start_time).unix(),
           start_time: event.start_time,
           end_time: event.end_time,
-          platform: event.platform
+          platform: event.platform,
+          rsvp_count: event.rsvp_count
         }
       })
 
