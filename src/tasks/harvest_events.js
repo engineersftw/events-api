@@ -55,7 +55,7 @@ async function harvest () {
               if (item.venue) {
                 location = item.venue.name
 
-                if (!!item.venue.address_1) {
+                if (item.venue.address_1) {
                   location += `, ${item.venue.address_1}`
                 }
               }

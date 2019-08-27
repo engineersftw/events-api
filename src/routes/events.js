@@ -5,9 +5,10 @@ const db = require('../models/index')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const moment = require('moment')
+// const ical = require('ical-generator')
 
 async function fetchEvents (startDate) {
-  return await db.Event
+  return db.Event
     .findAll({
       where: {
         active: true,
@@ -32,7 +33,6 @@ router.get('/', async function (req, res, next) {
       name: event.name,
       description: event.description,
       location: event.location,
-      rsvp_count: event.reavp_count,
       url: event.url,
       group_id: event.group_id,
       group_name: event.group_name,

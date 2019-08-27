@@ -86,10 +86,10 @@ class MeetupService {
 
     let validity = true
 
-    tokens.forEach( (token) => {
+    tokens.forEach((token) => {
       if (MeetupService.BLACKLIST_TOKENS.includes(token.toLowerCase())) { validity = false }
 
-      MeetupService.BLACKLIST_TOKENS.forEach( (blToken) => {
+      MeetupService.BLACKLIST_TOKENS.forEach((blToken) => {
         if (token.toLowerCase().includes(blToken)) { validity = false }
       })
     })
@@ -108,9 +108,9 @@ class MeetupService {
     return this.axios[type]
   }
 
-  static get BLACKLIST_TOKENS() {
+  static get BLACKLIST_TOKENS () {
     return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
-    'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
+      'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
   }
 }
 
