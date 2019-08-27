@@ -82,7 +82,9 @@ router.get('/cal', async function (req, res, next) {
       prodId: { company: 'Engineers.SG', product: 'events-calendar', language: 'EN' },
       name: 'Engineers.SG',
       timezone: 'Asia/Singapore',
-      description: 'Free tech events in Singapore'
+      description: 'Free tech events in Singapore',
+      version: '2.0',
+      'X-WR-CALNAME': 'Engineers.SG'
     })
     cal.events(eventListing)
 
