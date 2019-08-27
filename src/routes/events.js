@@ -35,6 +35,7 @@ router.get('/', function (req, res, next) {
           group_name: event.group_name,
           group_url: event.group_url,
           formatted_time: event.formatted_time,
+          unix_start_time: moment(event.start_time).unix(),
           start_time: event.start_time,
           end_time: event.end_time,
           platform: event.platform
