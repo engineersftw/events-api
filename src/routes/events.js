@@ -72,8 +72,8 @@ router.get('/cal', async function (req, res, next) {
         url: event.url,
         organizer: { name: event.group_name, email: 'events@engineers.sg' },
         timestamp: event.start_time,
-        start: event.start_time,
-        end: event.end_time
+        start: moment(event.start_time).tz('Asia/Singapore'),
+        end: moment(event.end_time).tz('Asia/Singapore')
       }
     })
 
