@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const db = require('../models/index')
 const HarvesterService = require('../services/harvester_service')
-const moment = require('moment')
+const moment = require('moment-timezone')
 
 const harvester = new HarvesterService({
   meetup: {
@@ -74,7 +74,7 @@ async function harvest () {
                 group_id: item.group.id,
                 group_name: item.group.name,
                 group_url: `https://www.meetup.com/${item.group.urlname}`,
-                formatted_time: startTime.format('DD MMM YYYY, ddd, h:mm a'),
+                formatted_time: startTime.tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
                 start_time: startTime.toDate(),
                 end_time: endTime.toDate(),
                 latitude: (item.venue ? item.venue.lat : null),
