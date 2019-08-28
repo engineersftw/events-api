@@ -21,6 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/events', eventsRouter)
-if (process.env.NODE_ENV === 'dev') { app.use('/oauth', authRouter) }
+if (process.env.NODE_ENV === 'development') { app.use('/oauth', authRouter) }
 
 module.exports = app
