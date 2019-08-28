@@ -41,6 +41,7 @@ class MeetupHarvester {
       })
 
       if (groupsResponse.status === 200) {
+        console.log('Rate Limit Remaining:', groupsResponse.headers['x-ratelimit-remaining'])
         const groups = groupsResponse.data
 
         allGroups.push(...groups)
@@ -51,6 +52,7 @@ class MeetupHarvester {
 
         offset++
       } else {
+        console.log('API Error:', groupsResponse)
         break
       }
     }
@@ -70,6 +72,7 @@ class MeetupHarvester {
       })
 
       if (groupsEventsResponse.status === 200) {
+        console.log('Rate Limit Remaining:', groupsEventsResponse.headers['x-ratelimit-remaining'])
         const groups = groupsEventsResponse.data
 
         allEvents.push(...groups)
@@ -80,6 +83,7 @@ class MeetupHarvester {
 
         offset++
       } else {
+        console.log('API Error:', groupsEventsResponse)
         break
       }
     }
