@@ -47,6 +47,7 @@ async function harvest () {
     })
   } catch (error) {
     console.log('Harvest Error:', error)
+    db.sequelize.close()
   }
 }
 

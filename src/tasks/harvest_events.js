@@ -5,8 +5,8 @@ const db = require('../models/index')
 const Queue = require('bull')
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 const workQueue = new Queue('esg_events', REDIS_URL)
-const delayInterval = 12000
-const batchSize = 2
+const delayInterval = parseInt(process.env.EVENT_WORKER_DELAY_INTERVAL) || 12000
+const batchSize = parseInt(process.env.EVENT_WORKER_BATCH_SIZE) || 25
 
 async function harvest () {
   console.log('Fetching all active groups')
