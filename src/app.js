@@ -9,6 +9,7 @@ const cors = require('cors')
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
 const eventsRouter = require('./routes/events')
+const arenaRouter = require('./routes/arena')
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/events', eventsRouter)
+app.use('/arena', arenaRouter)
 if (process.env.NODE_ENV === 'development') { app.use('/oauth', authRouter) }
 
 module.exports = app
