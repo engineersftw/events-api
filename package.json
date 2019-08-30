@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-backend-starterkit",
+  "name": "esg-events-api",
   "version": "0.0.0",
   "scripts": {
     "start": "NODE_ENV=production node ./bin/www",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TechLadies/nodejs-backend-starterkit.git"
+    "url": "git+https://github.com/engineersftw/events-api.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TechLadies/nodejs-backend-starterkit/issues"
+    "url": "https://github.com/engineersftw/events-api/issues"
   },
-  "homepage": "https://github.com/TechLadies/nodejs-backend-starterkit#readme",
+  "homepage": "https://github.com/engineersftw/events-api#readme",
   "dependencies": {
     "axios": "^0.19.0",
     "bull": "^3.10.0",
