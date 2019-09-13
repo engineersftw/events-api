@@ -6,6 +6,7 @@ const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const moment = require('moment-timezone')
 const ical = require('ical-generator')
+const htmlToText = require('html-to-text')
 
 async function fetchEvents (startDate) {
   return db.Event
@@ -32,7 +33,7 @@ router.get('/', async function (req, res, next) {
       return {
         id: event.platform_identifier,
         name: event.name,
-        description: event.description,
+        description: htmlToText.fromString(event.description),
         location: event.location,
         url: event.url,
         group_id: event.group_id,
@@ -70,7 +71,7 @@ router.get('/cal', async function (req, res, next) {
       return {
         uid: `${event.platform}_${event.platform_identifier}`,
         summary: event.name,
-        description: event.description + `\n\nRSVP Here: ${event.url}\nRSVP Count: ${event.rsvp_count}`,
+        description: htmlToText.fromString(event.description) + `\n\nRSVP Here: ${event.url}\nRSVP Count: ${event.rsvp_count}`,
         location: event.location,
         url: event.url,
         organizer: { name: event.group_name, email: 'events@engineers.sg' },
