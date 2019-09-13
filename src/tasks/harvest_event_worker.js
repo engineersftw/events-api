@@ -13,6 +13,8 @@ const db = require('../models/index')
 const HarvesterService = require('../services/harvester_service')
 const moment = require('moment-timezone')
 
+const htmlToText = require('html-to-text')
+
 function start () {
   const harvester = new HarvesterService({
     meetup: {
@@ -64,7 +66,7 @@ function start () {
                   name: item.name,
                   platform: 'meetup',
                   platform_identifier: `${item.id}`,
-                  description: item.description,
+                  description: htmlToText.fromString(item.description),
                   location: location,
                   rsvp_count: item.yes_rsvp_count,
                   url: item.link,
