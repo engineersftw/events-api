@@ -5,7 +5,7 @@ const db = require('../models/index')
 const Op = db.Sequelize.Op
 
 async function fetchGroup (platform, urlname) {
-  return await db.Group
+  return db.Group
     .findOne({
       where: {
         active: true,
@@ -43,24 +43,24 @@ function checkAdminToken (req, res, next) {
 router.get('/:platform/:urlname', async function (req, res, next) {
   try {
     const { platform, urlname } = req.params
-    const group = await fetchGroup (platform, urlname)
+    const group = await fetchGroup(platform, urlname)
 
     res.json(group || {})
   } catch (err) {
-    res.status(500).json({error: err.message})
+    res.status(500).json({ error: err.message })
   }
 })
 
 router.delete('/:platform/:urlname/blacklist', checkAdminToken, async function (req, res, next) {
   try {
     const { platform, urlname } = req.params
-    const group = await fetchGroup (platform, urlname)
+    const group = await fetchGroup(platform, urlname)
 
     const result = await blackListGroup(group)
 
     res.json(result)
   } catch (err) {
-    res.status(500).json({error: err.message})
+    res.status(500).json({ error: err.message })
   }
 })
 
