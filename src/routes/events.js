@@ -2,8 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const db = require('../models/index')
-const Sequelize = require('sequelize')
-const Op = Sequelize.Op
+const Op = db.Sequelize.Op
 const moment = require('moment-timezone')
 const ical = require('ical-generator')
 const htmlToText = require('html-to-text')
