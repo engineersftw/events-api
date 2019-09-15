@@ -11,7 +11,7 @@ const authRouter = require('./routes/auth')
 const eventsRouter = require('./routes/events')
 const groupsRouter = require('./routes/groups')
 const arenaRouter = require('./routes/arena')
-const graphqlServer = require('./routes/graphql_server')
+const graphqlServer = require('./graphql/graphql_server')
 
 const app = express()
 
