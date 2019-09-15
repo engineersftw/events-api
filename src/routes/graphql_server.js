@@ -21,6 +21,6 @@ const resolvers = {
   }
 }
 
-const graphqlServer = new ApolloServer({ typeDefs, resolvers })
+const graphqlServer = new ApolloServer({ typeDefs, resolvers, introspection: true })
 
 module.exports = graphqlServer
