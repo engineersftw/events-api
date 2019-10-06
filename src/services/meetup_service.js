@@ -1,5 +1,6 @@
 const axios = require('axios')
 const querystring = require('querystring')
+const Sentry = require('@sentry/node')
 
 class MeetupService {
   constructor (options = {}) {
@@ -39,6 +40,7 @@ class MeetupService {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      Sentry.captureException(err)
       return { error: err.message }
     }
   }
@@ -60,6 +62,7 @@ class MeetupService {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      Sentry.captureException(err)
       return { error: err.message }
     }
   }
@@ -74,6 +77,7 @@ class MeetupService {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      Sentry.captureException(err)
       return { error: err.message }
     }
   }

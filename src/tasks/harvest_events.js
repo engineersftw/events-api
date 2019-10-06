@@ -1,5 +1,10 @@
 require('dotenv').config()
 
+const Sentry = require('@sentry/node')
+if (process.env.SENTRY_DSN) {
+  Sentry.init({ dsn: process.env.SENTRY_DSN })
+}
+
 const db = require('../models/index')
 
 const Queue = require('bull')
@@ -51,6 +56,7 @@ async function harvest () {
       })
   } catch (err) {
     console.log('Harvester Error:', err)
+    Sentry.captureException(err)
     workQueue.close()
     db.sequelize.close()
   }

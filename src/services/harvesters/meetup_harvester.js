@@ -1,4 +1,5 @@
 const MeetupService = require('../meetup_service')
+const Sentry = require('@sentry/node')
 
 class MeetupHarvester {
   constructor (options = {}) {
@@ -22,6 +23,7 @@ class MeetupHarvester {
       this.meetupService.setAccessToken(newAccessToken)
     } catch (err) {
       console.log('Prepare Service Error', err)
+      Sentry.captureException(err)
     }
   }
 

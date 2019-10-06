@@ -1,5 +1,10 @@
 require('dotenv').config()
 
+const Sentry = require('@sentry/node')
+if (process.env.SENTRY_DSN) {
+  Sentry.init({ dsn: process.env.SENTRY_DSN })
+}
+
 const throng = require('throng')
 
 const Queue = require('bull')
@@ -89,6 +94,7 @@ function start () {
         })
     } catch (err) {
       console.log('Harvester Error:', err)
+      Sentry.captureException(err)
       done(err)
     }
   })

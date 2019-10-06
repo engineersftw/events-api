@@ -1,5 +1,10 @@
 require('dotenv').config()
 
+const Sentry = require('@sentry/node')
+if (process.env.SENTRY_DSN) {
+  Sentry.init({ dsn: process.env.SENTRY_DSN })
+}
+
 const HarvesterService = require('../services/harvester_service')
 const db = require('../models/index')
 const MeetupService = require('../services/meetup_service')
@@ -47,6 +52,7 @@ async function harvest () {
     })
   } catch (error) {
     console.log('Harvest Error:', error)
+    Sentry.captureException(err)
     db.sequelize.close()
   }
 }

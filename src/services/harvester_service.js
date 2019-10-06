@@ -1,4 +1,5 @@
 const MeetupHarvester = require('./harvesters/meetup_harvester')
+const Sentry = require('@sentry/node')
 
 class HarvesterService {
   constructor (options = {}) {
@@ -11,6 +12,7 @@ class HarvesterService {
       await this.meetupHarvester.prepareService()
     } catch (err) {
       console.log('Prepare Service Error', err)
+      Sentry.captureException(err)
     }
   }
 
@@ -25,6 +27,7 @@ class HarvesterService {
       allGroups.meetup.push(...meetupGroups)
     } catch (err) {
       console.log('Harvester Error', err)
+      Sentry.captureException(err)
     }
 
     return allGroups
@@ -42,6 +45,7 @@ class HarvesterService {
       }
     } catch (err) {
       console.log('Harvester Error', err)
+      Sentry.captureException(err)
     }
 
     return {
