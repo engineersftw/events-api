@@ -39,7 +39,7 @@ async function harvest () {
         platform_identifier: group.platform_identifier,
         urlname: group.urlname
       }
-      return workQueue.add(jobDetails, { delay: currentDelay })
+      return workQueue.add(jobDetails, { delay: currentDelay, removeOnComplete: true })
     })
 
     Promise.all(allJobs)
