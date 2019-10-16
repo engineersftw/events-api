@@ -68,7 +68,7 @@ class MeetupHarvester {
     let groupsEventsResponse
 
     while (true) {
-      groupsEventsResponse = await this.meetupService.fetchApi(`/${group.urlname}/events`, {
+      groupsEventsResponse = await this.meetupService.fetchApi(`/${encodeURI(group.urlname)}/events`, {
         page: 200,
         offset: offset
       })
