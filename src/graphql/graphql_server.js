@@ -12,4 +12,4 @@ const resolvers = {
   Event: eventResolver
 }
 
-module.exports = new ApolloServer({ typeDefs, resolvers, introspection: true })
+module.exports = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true })
