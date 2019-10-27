@@ -20,6 +20,20 @@ type Event {
   active: Boolean
 }
 
+type Group {
+  uid: ID
+  name: String
+  platform: String
+  platform_identifier: String
+  status: String
+  link: String
+  urlname: String
+  description: String
+  members: Int
+  blacklisted: Boolean
+  active: Boolean
+}
+
 type PageInfo {
   currentPage: Int!
   hasNextPage: Boolean!
@@ -32,9 +46,17 @@ type EventConnection {
   totalCount: Int!
 }
 
+type GroupConnection {
+  nodes: [Group]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
 type Query {
   event(uid: ID!): Event
   events(pageNumber: Int!, perPage: Int, from: DateTime, to: DateTime): EventConnection
+  group(uid: ID!): Group
+  groups(pageNumber: Int!, perPage: Int): GroupConnection
 }
 
 input EventInput {

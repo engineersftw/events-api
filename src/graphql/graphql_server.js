@@ -4,15 +4,19 @@ const schemaPath = require('path').join(__dirname, '/schema.graphql')
 const typeDefs = require('graphql-import').importSchema(schemaPath)
 
 const { eventResolver, eventQueryResolver, eventsQueryResolver, createEventMutationResolver } = require('./resolvers/event')
+const { groupResolver, groupQueryResolver, groupsQueryResolver } = require('./resolvers/group')
 const resolvers = {
   Query: {
     event: eventQueryResolver,
-    events: eventsQueryResolver
+    events: eventsQueryResolver,
+    group: groupQueryResolver,
+    groups: groupsQueryResolver,
   },
   Mutation: {
     createEvent: createEventMutationResolver
   },
-  Event: eventResolver
+  Event: eventResolver,
+  Group: groupResolver
 }
 
 const jwt = require('jsonwebtoken')
@@ -25,7 +29,9 @@ const context = ({ req }) => {
 
   try {
     const token = req.headers.authorization || ''
-    contextData.user = getUser(token)
+    if (token.length > 0) {
+      contextData.user = getUser(token)
+    }
   } catch (err) {
     console.error('Error:', err.message)
   }
