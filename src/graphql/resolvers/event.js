@@ -3,6 +3,7 @@ const Op = db.Sequelize.Op
 
 const moment = require('moment-timezone')
 const buildConnection = require('./connection')
+const uuidv1 = require('uuid/v1')
 
 async function eventsQueryResolver (parent, args, context, info) {
   let { pageNumber, perPage } = args
@@ -36,4 +37,24 @@ const eventResolver = {
   end_time: parent => moment(parent.end_time).tz('Asia/Singapore').format()
 }
 
-module.exports = { eventResolver, eventQueryResolver, eventsQueryResolver }
+async function createEventMutationResolver (parent, args, context, info) {
+  const { event } = args
+
+  const startTime = moment.tz(event.start_time, 'Asia/Singapore')
+  const endTime = moment.tz(event.end_time, 'Asia/Singapore')
+
+  event.start_time = startTime.toDate()
+  event.end_time = endTime.toDate()
+  event.formatted_time = startTime.format('DD MMM YYYY, ddd, h:mm a')
+
+  event.platform = 'esg'
+  event.platform_identifier = uuidv1()
+
+  event.active = true
+
+  const newEvent = await db.Event.create(event)
+
+  return newEvent
+}
+
+module.exports = { eventResolver, eventQueryResolver, eventsQueryResolver, createEventMutationResolver }

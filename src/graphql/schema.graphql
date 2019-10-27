@@ -36,3 +36,18 @@ type Query {
   event(uid: ID!): Event
   events(pageNumber: Int!, perPage: Int, from: DateTime, to: DateTime): EventConnection
 }
+
+input EventInput {
+  name: String!
+  description: String!
+  location: String!
+  url: String!
+  group_name: String!
+  group_url: String!
+  start_time: DateTime!
+  end_time: DateTime!
+}
+
+type Mutation {
+  createEvent(event: EventInput!): Event
+}
