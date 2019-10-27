@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/engineersftw/events-api#readme",
   "dependencies": {
-    "@sentry/node": "^5.6.2",
+    "@sentry/node": "^5.7.1",
     "apollo-server-express": "^2.9.3",
     "axios": "^0.19.0",
     "bull": "^3.10.0",
