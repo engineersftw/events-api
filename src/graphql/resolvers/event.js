@@ -40,7 +40,7 @@ const eventResolver = {
 
 async function createEventMutationResolver (parent, args, context, info) {
   if (!context.user) {
-    return mutationResponse('500', false, 'User not found')
+    return mutationResponse('401', false, 'User not found')
   }
 
   const { event } = args

@@ -68,6 +68,17 @@ input EventInput {
   group_url: String!
   start_time: DateTime!
   end_time: DateTime!
+  active: Boolean
+}
+
+input GroupInput {
+  name: String!
+  link: String!
+  urlname: String!
+  description: String!
+  members: Int
+  blacklisted: Boolean
+  active: Boolean
 }
 
 interface MutationResponse {
@@ -83,6 +94,14 @@ type EventMutationResponse implements MutationResponse {
   event: Event
 }
 
+type GroupMutationResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  group: Group
+}
+
 type Mutation {
   createEvent(event: EventInput!): EventMutationResponse
+  createGroup(group: GroupInput!): GroupMutationResponse
 }
