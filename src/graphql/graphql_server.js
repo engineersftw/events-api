@@ -16,7 +16,16 @@ const resolvers = {
     createEvent: createEventMutationResolver
   },
   Event: eventResolver,
-  Group: groupResolver
+  Group: groupResolver,
+  MutationResponse: {
+    __resolveType(mutationResponse, context, info) {
+      if (mutationResponse.event) {
+        return 'EventMutationResponse'
+      }
+
+      return null
+    }
+  }
 }
 
 const jwt = require('jsonwebtoken')
