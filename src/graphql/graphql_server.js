@@ -15,4 +15,22 @@ const resolvers = {
   Event: eventResolver
 }
 
-module.exports = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true })
+const jwt = require('jsonwebtoken')
+function getUser(token) {
+  return jwt.verify(token, process.env.JWT_SECRET)
+}
+
+const context = ({ req }) => {
+  const contextData = {}
+
+  try {
+    const token = req.headers.authorization || ''
+    contextData.user = getUser(token)
+  } catch (err) {
+    console.error('Error:', err.message)
+  }
+
+  return contextData
+}
+
+module.exports = new ApolloServer({ typeDefs, resolvers, context, introspection: true, playground: true })

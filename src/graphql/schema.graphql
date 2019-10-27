@@ -48,6 +48,19 @@ input EventInput {
   end_time: DateTime!
 }
 
+interface MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+}
+
+type EventMutationResponse implements MutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  event: Event
+}
+
 type Mutation {
-  createEvent(event: EventInput!): Event
+  createEvent(event: EventInput!): EventMutationResponse
 }
