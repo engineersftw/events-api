@@ -3,6 +3,8 @@ const Op = db.Sequelize.Op
 
 const moment = require('moment-timezone')
 const buildConnection = require('./connection')
+const uuidv1 = require('uuid/v1')
+const { mutationResponse } = require('./mutationResponse')
 
 async function eventsQueryResolver (parent, args, context, info) {
   let { pageNumber, perPage } = args
@@ -36,4 +38,34 @@ const eventResolver = {
   end_time: parent => moment(parent.end_time).tz('Asia/Singapore').format()
 }
 
-module.exports = { eventResolver, eventQueryResolver, eventsQueryResolver }
+async function createEventMutationResolver (parent, args, context, info) {
+  if (!context.user) {
+    return mutationResponse('401', false, 'User not found')
+  }
+
+  const { event } = args
+
+  try {
+    const startTime = moment.tz(event.start_time, 'Asia/Singapore')
+    const endTime = moment.tz(event.end_time, 'Asia/Singapore')
+
+    event.start_time = startTime.toDate()
+    event.end_time = endTime.toDate()
+    event.formatted_time = startTime.format('DD MMM YYYY, ddd, h:mm a')
+
+    event.platform = 'esg'
+    event.platform_identifier = uuidv1()
+
+    event.active = true
+
+    const newEvent = await db.Event.create(event)
+
+    return mutationResponse('200', true, 'Event created successfully', { event: newEvent })
+  } catch (err) {
+    mutationResponse('500', false, err.message)
+  }
+
+  return mutationResponse('500', false, 'Unknown error')
+}
+
+module.exports = { eventResolver, eventQueryResolver, eventsQueryResolver, createEventMutationResolver }
