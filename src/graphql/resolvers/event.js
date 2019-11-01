@@ -56,7 +56,7 @@ async function createEventMutationResolver (parent, args, context, info) {
     event.platform = 'esg'
     event.platform_identifier = uuidv1()
 
-    event.active = true
+    event.active = false
 
     const newEvent = await db.Event.create(event)
 
