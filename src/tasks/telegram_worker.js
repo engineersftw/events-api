@@ -8,9 +8,9 @@ const db = require('../models/index')
 const Op = db.Sequelize.Op
 const moment = require('moment-timezone')
 
-async function fetchEvents() {
-    const startDate = moment('2020-04-20').hour(0).minute(0)
-    const endDate = moment('2020-04-20').hour(23).minute(59)
+async function fetchEvents(date) {
+    const startDate = date.hour(0).minute(0)
+    const endDate = moment(date).hour(23).minute(59)
     return db.Event
         .findAll({
             where: {
@@ -28,7 +28,9 @@ async function fetchEvents() {
 
 async function push() {
     try {
-        const events = await fetchEvents()
+        const dateToQuery = moment().add(1, 'day')
+        const formattedDateToQuery = dateToQuery.format('YYYY-MM-DD')
+        const events = await fetchEvents(dateToQuery)
         console.log(events)
 
         if (events.length > 0) {
@@ -42,11 +44,11 @@ async function push() {
                     formatted_time: moment(event.start_time).tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a')
                 }
             })
-            const messages = eventListing.map(event => `😵 [${event.name}](${event.url}) - ${event.formatted_time} - ${event.location}`)
-            const header = `*${messages.length} Upcoming Events for ${'2020-04-20'}* `
+            const messages = eventListing.map(event => `💬 [${event.name}](${event.url}) - ${event.formatted_time} - ${event.location}`)
+            const header = `*${messages.length} Upcoming Events for ${formattedDateToQuery}* `
             const footer = `_Brought to you by Engineers.SG_`
 
-            const finalMessage = header + "\n\n" + messages.join("\n") + "\n" + footer
+            const finalMessage = header + "\n\n" + messages.join("\n") + "\n\n" + footer
 
             const data = {
                 "chat_id": chatId,
@@ -54,12 +56,15 @@ async function push() {
                 "parse_mode": "markdown",
                 "disable_web_page_preview": true
             }
-    
             axios.post(`https://api.telegram.org/bot${token}/sendMessage`, data)
         } else {
-            console.error("No events found")
+            const data = {
+                "chat_id": chatId,
+                "text": `No events found for ${formattedDateToQuery}`,
+            }
+            axios.post(`https://api.telegram.org/bot${token}/sendMessage`, data)
+            console.error(`No events found for ${formattedDateToQuery}`)
         }
-        
     } catch (e) {
         console.log(e)
     }
