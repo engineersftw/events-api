@@ -41,11 +41,11 @@ async function push() {
                     url: event.url,
                     group_name: event.group_name,
                     group_url: event.group_url,
-                    formatted_time: moment(event.start_time).tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a')
+                    formatted_time: moment(event.start_time).tz('Asia/Singapore').format('h:mm a')
                 }
             })
-            const messages = eventListing.map(event => `💬 [${event.name}](${event.url}) - ${event.formatted_time} - ${event.location}`)
-            const header = `*${messages.length} Upcoming Events for ${formattedDateToQuery}* `
+            const messages = eventListing.map(event => `⏰ ${event.formatted_time} - [${event.name}](${event.url}) (${event.group_name}) - 📍${event.location}`)
+            const header = `*🗓 ${messages.length} Upcoming Events for ${dateToQuery.format('DD MMM YYYY, ddd')}* `
             const footer = `_Brought to you by Engineers.SG_`
 
             const finalMessage = header + "\n\n" + messages.join("\n") + "\n\n" + footer
