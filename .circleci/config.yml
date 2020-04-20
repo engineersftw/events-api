@@ -16,6 +16,7 @@ jobs:
       NODE_ENV: test
       PGUSER: circleci
       PGDATABASE: esg_events_test
+      DB_USERNAME: circleci
       MEETUP_OAUTH_KEY: ABCD1234
       MEETUP_OAUTH_SECRET: ABCD1234
       MEETUP_REFRESH_TOKEN: ABCD1234
