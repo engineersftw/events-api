@@ -26,7 +26,7 @@ async function groupQueryResolver (parent, args, context, info) {
 }
 
 const groupResolver = {
-  uid: parent => parent.id,
+  uid: parent => parent.id
 }
 
 async function createGroupMutationResolver (parent, args, context, info) {

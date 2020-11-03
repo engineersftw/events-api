@@ -10,7 +10,7 @@ const resolvers = {
     event: eventQueryResolver,
     events: eventsQueryResolver,
     group: groupQueryResolver,
-    groups: groupsQueryResolver,
+    groups: groupsQueryResolver
   },
   Mutation: {
     createEvent: createEventMutationResolver,
@@ -19,7 +19,7 @@ const resolvers = {
   Event: eventResolver,
   Group: groupResolver,
   MutationResponse: {
-    __resolveType(mutationResponse, context, info) {
+    __resolveType (mutationResponse, context, info) {
       if (mutationResponse.event) {
         return 'EventMutationResponse'
       }
@@ -30,7 +30,7 @@ const resolvers = {
 }
 
 const jwt = require('jsonwebtoken')
-function getUser(token) {
+function getUser (token) {
   token = token.replace(/bearer/gi, '').trim()
 
   return jwt.verify(token, process.env.JWT_SECRET)
