@@ -1,8 +1,8 @@
 require('dotenv').config()
-const axios = require('axios')
+const { default: axios } = require('axios')
 
 const token = process.env.TELEGRAM_BOT_TOKEN
-const chatId = new Number(process.env.TELEGRAM_CHAT_ID)
+const chatId = Number(process.env.TELEGRAM_CHAT_ID)
 
 const db = require('../models/index')
 const Op = db.Sequelize.Op
@@ -90,7 +90,7 @@ async function push () {
       console.error(`No events found for ${formattedDateToQuery}`)
     }
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 
