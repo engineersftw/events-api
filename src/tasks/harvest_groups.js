@@ -63,9 +63,9 @@ async function harvest () {
           })
         })
     })
-  } catch (error) {
-    console.log('Harvest Error:', error)
-    Sentry.captureException(error)
+  } catch (err) {
+    console.log('Harvest Error:', err)
+    Sentry.captureException(err)
     db.sequelize.close()
   }
 }

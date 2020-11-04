@@ -90,10 +90,10 @@ function start () {
           })
           done()
         })
-        .catch(error => {
-          console.error(error.message)
+        .catch(err => {
+          console.error(err.message)
           Sentry.captureException(err)
-          throw error
+          throw err
         })
     } catch (err) {
       console.log('Harvester Error:', err)
