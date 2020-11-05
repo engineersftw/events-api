@@ -11,7 +11,7 @@ const Queue = require('bull')
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 
 const workers = process.env.WEB_CONCURRENCY || 1
-const maxJobsPerWorker = 20
+const maxJobsPerWorker = 1
 
 const db = require('../models/index')
 
@@ -33,6 +33,19 @@ function start () {
 
   workQueue.process(maxJobsPerWorker, async (job, done) => {
     try {
+      // This code doesn't seem quite right.
+      //
+      // When maxJobsPerWorker = 20, 20 parallel jobs will call
+      // harvester.prepareService() all on the same harvester, and then 20 jobs
+      // will call harvester.fetchGroupEvents() all on the same harvester!
+      //
+      // We could move the harvester constructor inside this function, but I
+      // don't think meetup likes us requesting 20 tokens at the same time.
+      //
+      // I think perhaps we want just 4 parallel workers, each with its own
+      // harvester, each processing many groups, until all the groups are gone.
+      // (Perhaps with a delay between fetching each group.)
+      //
       await harvester.prepareService()
 
       const eventResponses = await harvester.fetchGroupEvents(job.data)
