@@ -71,6 +71,8 @@ function start () {
   const workQueue = new Queue('esg_events', REDIS_URL)
 
   workQueue.process(maxJobsPerWorker, async (job, done) => {
+    console.log('=====================================================')
+
     try {
       // This code doesn't seem quite right.
       //
@@ -89,7 +91,6 @@ function start () {
 
       const eventResponses = await harvester.fetchGroupEvents(job.data)
       const allGroupEvents = eventResponses.events
-      console.log('=====================================================')
       console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
 
       for (const item of allGroupEvents) {
