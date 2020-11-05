@@ -20,6 +20,45 @@ const moment = require('moment-timezone')
 
 const htmlToText = require('html-to-text')
 
+async function removeUnwantedEvents () {
+  console.log('Checking for any unwanted events')
+
+  // We need to find all events whose group has been removed from the Groups table.
+  //   SELECT * from Events e WHERE e.group_id NOT IN (SELECT platform_identifier from public."Groups");
+  // But I couldn't work out how to execute that through Sequelize.
+  // So instead I fetch everything in JavaScript, and then process it.
+  //
+  // I also add some extra rules: Remove events whose group.blacklisted === true
+  //
+  // Rule NOT added: Remove events whose group.status !== 'active'
+
+  const allGroups = await db.Group.findAll({
+    attributes: ['platform_identifier', 'name', 'status', 'blacklisted']
+  })
+  const groupsById = {}
+  allGroups.forEach(group => {
+    groupsById[group.platform_identifier] = group
+  })
+
+  const allEvents = await db.Event.findAll({
+    attributes: ['name', 'group_id', 'group_name']
+  })
+
+  const shouldRemoveEvent = (event) => {
+    const group = groupsById[event.group_id]
+    const isOrphaned = !group
+    const isBlacklisted = group && group.blacklisted
+    return isOrphaned || isBlacklisted
+  }
+
+  const unwantedEvents = allEvents.filter(shouldRemoveEvent)
+
+  for (const event of unwantedEvents) {
+    console.log(`Removing orphaned/blacklisted event '${event.name}' from group '${event.group_name}'`)
+    await event.destroy()
+  }
+}
+
 function start () {
   const harvester = new HarvesterService({
     meetup: {
@@ -105,4 +144,9 @@ function start () {
   })
 }
 
-throng({ workers, start })
+removeUnwantedEvents().then(() => {
+  throng({ workers, start })
+}).catch(err => {
+  console.log('Main Harvester Error:', err)
+  Sentry.captureException(err)
+})
