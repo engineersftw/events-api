@@ -88,8 +88,9 @@ function start () {
                 })
               })
           })
-          done()
         })
+
+      done()
     } catch (err) {
       console.log('Harvester Error:', err)
       Sentry.captureException(err)
