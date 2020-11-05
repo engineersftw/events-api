@@ -47,46 +47,44 @@ function start () {
           const dbPromises = allGroupEvents.map(async (item) => {
             console.log('Event:', item.name)
 
-            await db.Event
-              .findOrBuild({
-                where: {
-                  platform: 'meetup',
-                  platform_identifier: `${item.id}`
-                }
-              })
-              .then(([event, created]) => {
-                let location = ''
-                if (item.venue) {
-                  location = item.venue.name
+            const [event, created] = await db.Event.findOrBuild({
+              where: {
+                platform: 'meetup',
+                platform_identifier: `${item.id}`
+              }
+            })
 
-                  if (item.venue.address_1) {
-                    location += `, ${item.venue.address_1}`
-                  }
-                }
+            let location = ''
+            if (item.venue) {
+              location = item.venue.name
 
-                const startTime = moment(`${item.local_date} ${item.local_time} +08:00`, 'YYYY-MM-DD HH:mm Z')
-                const endTime = moment(startTime).add(item.duration, 'milliseconds')
+              if (item.venue.address_1) {
+                location += `, ${item.venue.address_1}`
+              }
+            }
 
-                return event.update({
-                  name: item.name,
-                  platform: 'meetup',
-                  platform_identifier: `${item.id}`,
-                  description: htmlToText.fromString(item.description),
-                  location: location,
-                  rsvp_count: item.yes_rsvp_count,
-                  url: item.link,
-                  group_id: item.group.id,
-                  group_name: item.group.name,
-                  group_url: `https://www.meetup.com/${item.group.urlname}`,
-                  formatted_time: startTime.tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
-                  start_time: startTime.toDate(),
-                  end_time: endTime.toDate(),
-                  latitude: (item.venue ? item.venue.lat : null),
-                  longitude: (item.venue ? item.venue.lon : null)
-                }).then(() => {
-                  console.log('Updated the record for', item.name)
-                })
-              })
+            const startTime = moment(`${item.local_date} ${item.local_time} +08:00`, 'YYYY-MM-DD HH:mm Z')
+            const endTime = moment(startTime).add(item.duration, 'milliseconds')
+
+            await event.update({
+              name: item.name,
+              platform: 'meetup',
+              platform_identifier: `${item.id}`,
+              description: htmlToText.fromString(item.description),
+              location: location,
+              rsvp_count: item.yes_rsvp_count,
+              url: item.link,
+              group_id: item.group.id,
+              group_name: item.group.name,
+              group_url: `https://www.meetup.com/${item.group.urlname}`,
+              formatted_time: startTime.tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
+              start_time: startTime.toDate(),
+              end_time: endTime.toDate(),
+              latitude: (item.venue ? item.venue.lat : null),
+              longitude: (item.venue ? item.venue.lon : null)
+            })
+
+            console.log('Updated the record for', item.name)
           })
 
           await Promise.all(dbPromises)
