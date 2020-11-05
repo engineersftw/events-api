@@ -25,13 +25,13 @@ async function harvest () {
     const allGroups = await harvester.fetchGroups()
     console.log('Total number of groups:', allGroups.meetup.length)
 
-    allGroups.meetup.forEach(item => {
+    for (const item of allGroups.meetup) {
       console.log('Group Name:', item.name)
 
       const removeGroup = shouldRemoveGroup(item)
 
       if (removeGroup) {
-        db.Group.destroy({
+        await db.Group.destroy({
           where: {
             platform: 'meetup',
             platform_identifier: `${item.id}`
@@ -40,7 +40,7 @@ async function harvest () {
         return
       }
 
-      db.Group
+      await db.Group
         .findOrBuild({
           where: {
             platform: 'meetup',
@@ -48,7 +48,7 @@ async function harvest () {
           }
         })
         .then(([group, created]) => {
-          group.update({
+          return group.update({
             name: item.name,
             platform: 'meetup',
             platform_identifier: `${item.id}`,
@@ -62,7 +62,7 @@ async function harvest () {
             console.log('Updated the record for ', item.name)
           })
         })
-    })
+    }
   } catch (err) {
     console.log('Harvest Error:', err)
     Sentry.captureException(err)
