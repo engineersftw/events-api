@@ -44,7 +44,7 @@ function start () {
 
           console.log('=====================================================')
           console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
-          const dbProms = allGroupEvents.map(async (item) => {
+          const dbPromises = allGroupEvents.map(async (item) => {
             console.log('Event:', item.name)
 
             await db.Event
@@ -67,7 +67,7 @@ function start () {
                 const startTime = moment(`${item.local_date} ${item.local_time} +08:00`, 'YYYY-MM-DD HH:mm Z')
                 const endTime = moment(startTime).add(item.duration, 'milliseconds')
 
-                event.update({
+                return event.update({
                   name: item.name,
                   platform: 'meetup',
                   platform_identifier: `${item.id}`,
@@ -89,7 +89,7 @@ function start () {
               })
           })
 
-          await Promise.all(dbProms)
+          await Promise.all(dbPromises)
         })
 
       done()
