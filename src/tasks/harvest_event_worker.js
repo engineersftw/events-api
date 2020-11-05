@@ -44,7 +44,7 @@ function start () {
 
           console.log('=====================================================')
           console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
-          const dbPromises = allGroupEvents.map(async (item) => {
+          for (const item of allGroupEvents) {
             console.log('Event:', item.name)
 
             const [event, created] = await db.Event.findOrBuild({
@@ -85,9 +85,7 @@ function start () {
             })
 
             console.log('Updated the record for', item.name)
-          })
-
-          await Promise.all(dbPromises)
+          }
         })
 
       done()
