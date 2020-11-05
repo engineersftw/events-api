@@ -37,17 +37,17 @@ function start () {
       await harvester.prepareService()
 
       await Promise.all([harvester.fetchGroupEvents(job.data)])
-        .then((allEventResponses) => {
+        .then(async (allEventResponses) => {
           allEventResponses.forEach((eventResponse) => {
             allGroupEvents.push(...eventResponse.events)
           })
 
           console.log('=====================================================')
           console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
-          allGroupEvents.forEach((item) => {
+          const dbProms = allGroupEvents.map(async (item) => {
             console.log('Event:', item.name)
 
-            db.Event
+            await db.Event
               .findOrBuild({
                 where: {
                   platform: 'meetup',
@@ -88,6 +88,8 @@ function start () {
                 })
               })
           })
+
+          await Promise.all(dbProms)
         })
 
       done()
