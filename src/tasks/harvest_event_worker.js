@@ -36,7 +36,7 @@ function start () {
       const allGroupEvents = []
       await harvester.prepareService()
 
-      Promise.all([harvester.fetchGroupEvents(job.data)])
+      await Promise.all([harvester.fetchGroupEvents(job.data)])
         .then((allEventResponses) => {
           allEventResponses.forEach((eventResponse) => {
             allGroupEvents.push(...eventResponse.events)
@@ -89,11 +89,6 @@ function start () {
               })
           })
           done()
-        })
-        .catch(err => {
-          console.error(err.message)
-          Sentry.captureException(err)
-          throw err
         })
     } catch (err) {
       console.log('Harvester Error:', err)
