@@ -10,10 +10,12 @@ class MeetupHarvester {
 
   async prepareService () {
     try {
-      this.meetupService = new MeetupService({
-        consumerKey: this.consumerKey,
-        consumerSecret: this.consumerSecret
-      })
+      if (!this.meetupService) {
+        this.meetupService = new MeetupService({
+          consumerKey: this.consumerKey,
+          consumerSecret: this.consumerSecret
+        })
+      }
 
       const newTokenResponse = await this.meetupService.refreshToken(this.refreshToken)
       if (!newTokenResponse) {
