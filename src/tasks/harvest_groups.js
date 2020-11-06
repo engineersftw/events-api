@@ -17,6 +17,22 @@ const harvester = new HarvesterService({
   }
 })
 
+async function removeUnwantedGroups () {
+  console.log('Checking for any unwanted groups')
+
+  const allGroups = await db.Group.findAll({
+    attributes: ['platform_identifier', 'name', 'status', 'blacklisted']
+  })
+
+  for (const group of allGroups) {
+    const isLegit = MeetupService.isLegit(group)
+    if (!isLegit) {
+      console.log(`Removing blacklisted group '${group.name}' link: '${group.link}'`)
+      await group.destroy()
+    }
+  }
+}
+
 async function harvest () {
   try {
     await harvester.prepareService()
@@ -69,4 +85,10 @@ async function harvest () {
   }
 }
 
-harvest()
+removeUnwantedGroups().then(async () => {
+  await harvest()
+}).catch(err => {
+  console.log('Main Harvest Error:', err)
+  Sentry.captureException(err)
+  db.sequelize.close()
+})
