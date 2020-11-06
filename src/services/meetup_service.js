@@ -92,6 +92,8 @@ class MeetupService {
   }
 
   static isLegit (group) {
+    if (MeetupService.BLACKLIST_GROUPS.includes(group.link)) { return false }
+
     const { name } = group
     const tokens = name.split(' ')
 
@@ -124,6 +126,16 @@ class MeetupService {
   static get BLACKLIST_TOKENS () {
     return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
       'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
+  }
+
+  static get BLACKLIST_GROUPS () {
+    return [
+      // Not tech related
+      'https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group/',
+      'https://www.meetup.com/Wireless-devices-and-your-health/',
+      // I find this one a bit spammy, feels like a marketing drive
+      'https://www.meetup.com/A-US-stock-market-listedCo-Big-Data-AI-New-Technology/'
+    ]
   }
 }
 
