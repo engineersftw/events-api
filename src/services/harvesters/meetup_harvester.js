@@ -18,11 +18,16 @@ class MeetupHarvester {
       }
 
       const newTokenResponse = await this.meetupService.refreshToken(this.refreshToken)
-      if (!newTokenResponse) {
-        throw new Error('Unable to refresh token')
+      if (newTokenResponse === false) {
+        // Keep using the current token
+        return
+      }
+      if (!newTokenResponse || newTokenResponse.error) {
+        throw new Error(`Unable to refresh token`)
       }
       const newAccessToken = newTokenResponse.access_token
-      this.meetupService.setAccessToken(newAccessToken)
+      const expiresIn = newTokenResponse.expires_in
+      this.meetupService.setAccessToken(newAccessToken, expiresIn)
     } catch (err) {
       console.log('Prepare Service Error', err)
       Sentry.captureException(err)
