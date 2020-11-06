@@ -8,7 +8,6 @@ if (process.env.SENTRY_DSN) {
 const HarvesterService = require('../services/harvester_service')
 const db = require('../models/index')
 const MeetupService = require('../services/meetup_service')
-const { shouldRemoveGroup } = require('./filters')
 
 const harvester = new HarvesterService({
   meetup: {
@@ -28,8 +27,7 @@ async function harvest () {
     for (const item of allGroups.meetup) {
       console.log('Group Name:', item.name)
 
-      const removeGroup = shouldRemoveGroup(item)
-
+      /*
       if (removeGroup) {
         await db.Group.destroy({
           where: {
@@ -39,6 +37,7 @@ async function harvest () {
         })
         return
       }
+      */
 
       await db.Group
         .findOrBuild({
