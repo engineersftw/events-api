@@ -20,12 +20,12 @@ const moment = require('moment-timezone')
 
 const htmlToText = require('html-to-text')
 
-// A bit of a hack, to ensure removeUnwantedEvents() only runs once, not in every worker
+// A bit of a hack, to ensure checkExistingEvents() only runs once, not in every worker
 const isRootWorker = !process.env.CHILD_WORKER
 // Let any processes forked from this one know that they are children
 process.env.CHILD_WORKER = 'true'
 
-async function removeUnwantedEvents () {
+async function checkExistingEvents () {
   if (!isRootWorker) {
     return
   }
@@ -37,34 +37,33 @@ async function removeUnwantedEvents () {
   // But I couldn't work out how to execute that through Sequelize.
   // So instead I fetch everything in JavaScript, and then process it.
   //
-  // I also add some extra rules: Remove events whose group.blacklisted === true
-  //
-  // Rule NOT added: Remove events whose group.status !== 'active'
+  // I also implement an additional rule: Remove events whose group.blacklisted === true
 
-  const allGroups = await db.Group.findAll({
-    attributes: ['platform_identifier', 'name', 'status', 'blacklisted']
-  })
+  const allGroups = await db.Group.findAll({})
   const groupsById = {}
   allGroups.forEach(group => {
     groupsById[group.platform_identifier] = group
   })
 
   const allEvents = await db.Event.findAll({
-    attributes: ['name', 'group_id', 'group_name']
+    attributes: ['id', 'name', 'group_id', 'group_name', 'active']
   })
 
-  const shouldRemoveEvent = (event) => {
+  const isLegitEvent = (event) => {
     const group = groupsById[event.group_id]
     const isOrphaned = !group
     const isBlacklisted = group && group.blacklisted
-    return isOrphaned || isBlacklisted
+    return !isOrphaned && !isBlacklisted
   }
 
-  const unwantedEvents = allEvents.filter(shouldRemoveEvent)
-
-  for (const event of unwantedEvents) {
-    console.log(`Removing orphaned/blacklisted event '${event.name}' from group '${event.group_name}'`)
-    await event.destroy()
+  for (const event of allEvents) {
+    const shouldBeActive = isLegitEvent(event)
+    if (event.active !== shouldBeActive) {
+      console.log(`Changing active status of event '${event.name}' to: '${shouldBeActive}'`)
+      await event.update({
+        active: shouldBeActive
+      })
+    }
   }
 }
 
@@ -154,7 +153,7 @@ function start () {
   })
 }
 
-removeUnwantedEvents().then(() => {
+checkExistingEvents().then(() => {
   throng({ workers, start })
 }).catch(err => {
   console.log('Main Harvester Error:', err)
