@@ -20,7 +20,16 @@ const moment = require('moment-timezone')
 
 const htmlToText = require('html-to-text')
 
+// A bit of a hack, to ensure removeUnwantedEvents() only runs once, not in every worker
+const isRootWorker = !process.env.CHILD_WORKER
+// Let any processes forked from this one know that they are children
+process.env.CHILD_WORKER = 'true'
+
 async function removeUnwantedEvents () {
+  if (!isRootWorker) {
+    return
+  }
+
   console.log('Checking for any unwanted events')
 
   // We need to find all events whose group has been removed from the Groups table.
