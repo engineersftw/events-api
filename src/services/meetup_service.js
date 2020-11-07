@@ -34,12 +34,15 @@ class MeetupService {
         }
       ))
 
+      console.log(`[API] POST /oauth2/access <authorization_code> (status ${response.status})`)
+
       if (response.status === 200) {
         return response.data
       } else {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      console.error(`[API] POST /oauth2/access <authorization_code> error: ${err}`)
       Sentry.captureException(err)
       return { error: err.message }
     }
@@ -56,12 +59,15 @@ class MeetupService {
         }
       ))
 
+      console.log(`[API] POST /oauth2/access <refresh_token> (status ${response.status})`)
+
       if (response.status === 200) {
         return response.data
       } else {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      console.error(`[API] POST /oauth2/access <refresh_token> error: ${err}`)
       Sentry.captureException(err)
       return { error: err.message }
     }
@@ -71,12 +77,15 @@ class MeetupService {
     try {
       const response = await this.axiosInstance('api').get(uri, { params: data })
 
+      console.log(`[API] GET ${uri} ${JSON.stringify(data)} (status ${response.status}, size ${response.headers['content-length']})`)
+
       if (response.status === 200) {
         return response
       } else {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      console.error(`[API] GET ${uri} ${JSON.stringify(data)} error: ${err}`)
       Sentry.captureException(err)
       return { error: err.message }
     }
