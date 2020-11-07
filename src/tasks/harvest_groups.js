@@ -8,6 +8,8 @@ if (process.env.SENTRY_DSN) {
 const HarvesterService = require('../services/harvester_service')
 const db = require('../models/index')
 const MeetupService = require('../services/meetup_service')
+// @ts-ignore We exported that function on the router, until we find a more suitable place to put it
+const { blackListGroup } = require('../routes/groups')
 
 const harvester = new HarvesterService({
   meetup: {
@@ -16,6 +18,22 @@ const harvester = new HarvesterService({
     refreshToken: process.env.MEETUP_REFRESH_TOKEN
   }
 })
+
+async function checkExistingGroups () {
+  // Checks whether the blacklisted status of existing groups should be changed (e.g. after the filters were updated)
+  console.log('Checking the blacklisted state of existing groups')
+
+  const allGroups = await db.Group.findAll({})
+
+  for (const group of allGroups) {
+    const isLegit = MeetupService.isLegit(group)
+    const shouldBeBlacklisted = !isLegit
+    if (group.blacklisted !== shouldBeBlacklisted) {
+      console.log(`Changing blacklisted status of group '${group.name}' to: ${shouldBeBlacklisted}`)
+      await blackListGroup(group, shouldBeBlacklisted)
+    }
+  }
+}
 
 async function harvest () {
   try {
@@ -57,4 +75,10 @@ async function harvest () {
   }
 }
 
-harvest()
+checkExistingGroups().then(async () => {
+  await harvest()
+}).catch(err => {
+  console.log('Main Harvest Error:', err)
+  Sentry.captureException(err)
+  db.sequelize.close()
+})
