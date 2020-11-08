@@ -10,17 +10,24 @@ class MeetupHarvester {
 
   async prepareService () {
     try {
-      this.meetupService = new MeetupService({
-        consumerKey: this.consumerKey,
-        consumerSecret: this.consumerSecret
-      })
+      if (!this.meetupService) {
+        this.meetupService = new MeetupService({
+          consumerKey: this.consumerKey,
+          consumerSecret: this.consumerSecret
+        })
+      }
 
       const newTokenResponse = await this.meetupService.refreshToken(this.refreshToken)
-      if (!newTokenResponse) {
-        throw new Error('Unable to refresh token')
+      if (newTokenResponse === false) {
+        // Keep using the current token
+        return
+      }
+      if (!newTokenResponse || newTokenResponse.error) {
+        throw new Error(`Unable to refresh token`)
       }
       const newAccessToken = newTokenResponse.access_token
-      this.meetupService.setAccessToken(newAccessToken)
+      const expiresIn = newTokenResponse.expires_in
+      this.meetupService.setAccessToken(newAccessToken, expiresIn)
     } catch (err) {
       console.log('Prepare Service Error', err)
       Sentry.captureException(err)
@@ -43,7 +50,7 @@ class MeetupHarvester {
       })
 
       if (groupsResponse.status === 200) {
-        console.log('Rate Limit Remaining:', groupsResponse.headers['x-ratelimit-remaining'])
+        console.log('[API] Rate Limit Remaining:', groupsResponse.headers['x-ratelimit-remaining'])
         const groups = groupsResponse.data
 
         allGroups.push(...groups)
@@ -74,7 +81,7 @@ class MeetupHarvester {
       })
 
       if (groupsEventsResponse.status === 200) {
-        console.log('Rate Limit Remaining:', groupsEventsResponse.headers['x-ratelimit-remaining'])
+        console.log('[API] Rate Limit Remaining:', groupsEventsResponse.headers['x-ratelimit-remaining'])
         const groups = groupsEventsResponse.data
 
         allEvents.push(...groups)
