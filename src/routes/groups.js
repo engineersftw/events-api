@@ -15,13 +15,15 @@ async function fetchGroup (platform, urlname) {
     })
 }
 
-async function blackListGroup (group) {
+async function blackListGroup (group, newState) {
   await group.update({
-    blacklisted: true
+    blacklisted: newState
   })
 
+  const shouldBeActive = !newState
+
   return db.sequelize.query(
-    'UPDATE "Events" SET active = false WHERE platform = ? AND group_id = ?',
+    `UPDATE "Events" SET active = ${shouldBeActive} WHERE platform = ? AND group_id = ?`,
     {
       replacements: [group.platform, group.platform_identifier],
       type: db.sequelize.QueryTypes.UPDATE
@@ -56,7 +58,7 @@ router.delete('/:platform/:urlname/blacklist', checkAdminToken, async function (
     const { platform, urlname } = req.params
     const group = await fetchGroup(platform, urlname)
 
-    const result = await blackListGroup(group)
+    const result = await blackListGroup(group, true)
 
     res.json(result)
   } catch (err) {
@@ -65,3 +67,5 @@ router.delete('/:platform/:urlname/blacklist', checkAdminToken, async function (
 })
 
 module.exports = router
+
+module.exports.blackListGroup = blackListGroup

@@ -20,6 +20,53 @@ const moment = require('moment-timezone')
 
 const htmlToText = require('html-to-text')
 
+// A bit of a hack, to ensure checkExistingEvents() only runs once, not in every worker
+const isRootWorker = !process.env.CHILD_WORKER
+// Let any processes forked from this one know that they are children
+process.env.CHILD_WORKER = 'true'
+
+async function checkExistingEvents () {
+  if (!isRootWorker) {
+    return
+  }
+
+  console.log('Checking for any unwanted events')
+
+  // We need to find all events whose group has been removed from the Groups table.
+  //   SELECT * from Events e WHERE e.group_id NOT IN (SELECT platform_identifier from public."Groups");
+  // But I couldn't work out how to execute that through Sequelize.
+  // So instead I fetch everything in JavaScript, and then process it.
+  //
+  // I also implement an additional rule: Remove events whose group.blacklisted === true
+
+  const allGroups = await db.Group.findAll({})
+  const groupsById = {}
+  allGroups.forEach(group => {
+    groupsById[group.platform_identifier] = group
+  })
+
+  const allEvents = await db.Event.findAll({
+    attributes: ['id', 'name', 'group_id', 'group_name', 'active']
+  })
+
+  const isLegitEvent = (event) => {
+    const group = groupsById[event.group_id]
+    const isOrphaned = !group
+    const isBlacklisted = group && group.blacklisted
+    return !isOrphaned && !isBlacklisted
+  }
+
+  for (const event of allEvents) {
+    const shouldBeActive = isLegitEvent(event)
+    if (event.active !== shouldBeActive) {
+      console.log(`Changing active status of event '${event.name}' to: '${shouldBeActive}'`)
+      await event.update({
+        active: shouldBeActive
+      })
+    }
+  }
+}
+
 function start () {
   const harvester = new HarvesterService({
     meetup: {
@@ -110,4 +157,9 @@ function start () {
   })
 }
 
-throng({ workers, start })
+checkExistingEvents().then(() => {
+  throng({ workers, start })
+}).catch(err => {
+  console.log('Main Harvester Error:', err)
+  Sentry.captureException(err)
+})
