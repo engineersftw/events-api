@@ -46,7 +46,7 @@ async function checkExistingEvents () {
   })
 
   const allEvents = await db.Event.findAll({
-    attributes: ['id', 'name', 'group_id', 'group_name', 'active']
+    attributes: ['id', 'name', 'url', 'group_id', 'group_name', 'active']
   })
 
   const isLegitEvent = (event) => {
@@ -59,7 +59,7 @@ async function checkExistingEvents () {
   for (const event of allEvents) {
     const shouldBeActive = isLegitEvent(event)
     if (event.active !== shouldBeActive) {
-      console.log(`Changing active status of event '${event.name}' to: '${shouldBeActive}'`)
+      console.log(`Changing active status of event from ${event.active} to ${shouldBeActive}: '${event.url}'`)
       await event.update({
         active: shouldBeActive
       })
