@@ -40,7 +40,7 @@ const eventResolver = {
 
 async function createEventMutationResolver (parent, args, context, info) {
   if (!context.user) {
-    return mutationResponse('401', false, 'User not found')
+    return mutationResponse(401, false, 'User not found')
   }
 
   const { event } = args
@@ -60,12 +60,12 @@ async function createEventMutationResolver (parent, args, context, info) {
 
     const newEvent = await db.Event.create(event)
 
-    return mutationResponse('200', true, 'Event created successfully', { event: newEvent })
+    return mutationResponse(200, true, 'Event created successfully', { event: newEvent })
   } catch (err) {
-    mutationResponse('500', false, err.message)
+    mutationResponse(500, false, err.message)
   }
 
-  return mutationResponse('500', false, 'Unknown error')
+  return mutationResponse(500, false, 'Unknown error')
 }
 
 module.exports = { eventResolver, eventQueryResolver, eventsQueryResolver, createEventMutationResolver }
