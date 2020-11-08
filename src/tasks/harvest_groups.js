@@ -29,7 +29,7 @@ async function checkExistingGroups () {
     const isLegit = MeetupService.isLegit(group)
     const shouldBeBlacklisted = !isLegit
     if (group.blacklisted !== shouldBeBlacklisted) {
-      console.log(`Changing blacklisted status of group '${group.name}' to: ${shouldBeBlacklisted}`)
+      console.log(`Changing blacklisted status of group from ${group.blacklisted} to ${shouldBeBlacklisted}: ${group.link}`)
       await blackListGroup(group, shouldBeBlacklisted)
     }
   }
