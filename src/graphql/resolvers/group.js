@@ -41,7 +41,7 @@ async function createGroupMutationResolver (parent, args, context, info) {
     group.platform_identifier = uuidv1()
     group.status = 'active'
 
-    if (!Object.prototype.hasOwnProperty.call(group, 'active')) {
+    if (group.active === undefined) {
       group.active = true
     }
 
