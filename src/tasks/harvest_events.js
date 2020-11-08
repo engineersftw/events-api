@@ -42,7 +42,7 @@ async function harvest () {
       return workQueue.add(jobDetails, { delay: currentDelay, removeOnComplete: true, attempts: 3 })
     })
 
-    Promise.all(allJobs)
+    await Promise.all(allJobs)
       .then(allJobResults => {
         console.log('Number of added Jobs:', allJobResults.length)
       })
