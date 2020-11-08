@@ -82,8 +82,6 @@ function start () {
     console.log('=====================================================')
 
     try {
-      const allGroupEvents = []
-
       // This code doesn't seem quite right, because all jobs share one
       // harvester. (Workers fork into separate processes, but jobs do not.)
       //
