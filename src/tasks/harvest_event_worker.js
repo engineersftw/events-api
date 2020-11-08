@@ -32,69 +32,59 @@ function start () {
   const workQueue = new Queue('esg_events', REDIS_URL)
 
   workQueue.process(maxJobsPerWorker, async (job, done) => {
+    console.log('=====================================================')
+
     try {
-      const allGroupEvents = []
       await harvester.prepareService()
 
-      Promise.all([harvester.fetchGroupEvents(job.data)])
-        .then((allEventResponses) => {
-          allEventResponses.forEach((eventResponse) => {
-            allGroupEvents.push(...eventResponse.events)
-          })
+      const eventResponses = await harvester.fetchGroupEvents(job.data)
+      const allGroupEvents = eventResponses.events
+      console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
 
-          console.log('=====================================================')
-          console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
-          allGroupEvents.forEach((item) => {
-            console.log('Event:', item.name)
+      for (const item of allGroupEvents) {
+        console.log('Event:', item.name)
 
-            db.Event
-              .findOrBuild({
-                where: {
-                  platform: 'meetup',
-                  platform_identifier: `${item.id}`
-                }
-              })
-              .then(([event, created]) => {
-                let location = ''
-                if (item.venue) {
-                  location = item.venue.name
-
-                  if (item.venue.address_1) {
-                    location += `, ${item.venue.address_1}`
-                  }
-                }
-
-                const startTime = moment(`${item.local_date} ${item.local_time} +08:00`, 'YYYY-MM-DD HH:mm Z')
-                const endTime = moment(startTime).add(item.duration, 'milliseconds')
-
-                event.update({
-                  name: item.name,
-                  platform: 'meetup',
-                  platform_identifier: `${item.id}`,
-                  description: htmlToText.fromString(item.description),
-                  location: location,
-                  rsvp_count: item.yes_rsvp_count,
-                  url: item.link,
-                  group_id: item.group.id,
-                  group_name: item.group.name,
-                  group_url: `https://www.meetup.com/${item.group.urlname}`,
-                  formatted_time: startTime.tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
-                  start_time: startTime.toDate(),
-                  end_time: endTime.toDate(),
-                  latitude: (item.venue ? item.venue.lat : null),
-                  longitude: (item.venue ? item.venue.lon : null)
-                }).then(() => {
-                  console.log('Updated the record for', item.name)
-                })
-              })
-          })
-          done()
+        const [event, created] = await db.Event.findOrBuild({
+          where: {
+            platform: 'meetup',
+            platform_identifier: `${item.id}`
+          }
         })
-        .catch(error => {
-          console.error(error.message)
-          Sentry.captureException(err)
-          throw error
+
+        let location = ''
+        if (item.venue) {
+          location = item.venue.name
+
+          if (item.venue.address_1) {
+            location += `, ${item.venue.address_1}`
+          }
+        }
+
+        const startTime = moment(`${item.local_date} ${item.local_time} +08:00`, 'YYYY-MM-DD HH:mm Z')
+        const endTime = moment(startTime).add(item.duration, 'milliseconds')
+
+        await event.update({
+          name: item.name,
+          platform: 'meetup',
+          platform_identifier: `${item.id}`,
+          description: htmlToText.fromString(item.description),
+          location: location,
+          rsvp_count: item.yes_rsvp_count,
+          url: item.link,
+          group_id: item.group.id,
+          group_name: item.group.name,
+          group_url: `https://www.meetup.com/${item.group.urlname}`,
+          formatted_time: startTime.tz('Asia/Singapore').format('DD MMM YYYY, ddd, h:mm a'),
+          start_time: startTime.toDate(),
+          end_time: endTime.toDate(),
+          latitude: (item.venue ? item.venue.lat : null),
+          longitude: (item.venue ? item.venue.lon : null)
         })
+
+        console.log('Updated the record for', item.name)
+      }
+
+      done()
     } catch (err) {
       console.log('Harvester Error:', err)
       Sentry.captureException(err)
