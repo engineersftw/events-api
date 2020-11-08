@@ -46,4 +46,6 @@ Now you should be able to run the full process:
 npm run harvest:groups | tee harvest_groups.out
 
 npm run harvest:events | tee harvest_events.out
+
+npm run harvest:events:worker | tee harvest_events_worker.out
 ```

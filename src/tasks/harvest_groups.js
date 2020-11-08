@@ -24,35 +24,34 @@ async function harvest () {
     const allGroups = await harvester.fetchGroups()
     console.log('Total number of groups:', allGroups.meetup.length)
 
-    allGroups.meetup.forEach(item => {
+    for (const item of allGroups.meetup) {
       console.log('Group Name:', item.name)
 
-      db.Group
+      const [group, created] = await db.Group
         .findOrBuild({
           where: {
             platform: 'meetup',
             platform_identifier: `${item.id}`
           }
         })
-        .then(([group, created]) => {
-          group.update({
-            name: item.name,
-            platform: 'meetup',
-            platform_identifier: `${item.id}`,
-            status: item.status,
-            link: item.link,
-            urlname: item.urlname,
-            description: item.description,
-            members: item.members,
-            blacklisted: !MeetupService.isLegit(item)
-          }).then(() => {
-            console.log('Updated the record for ', item.name)
-          })
-        })
-    })
-  } catch (error) {
-    console.log('Harvest Error:', error)
-    Sentry.captureException(error)
+
+      await group.update({
+        name: item.name,
+        platform: 'meetup',
+        platform_identifier: `${item.id}`,
+        status: item.status,
+        link: item.link,
+        urlname: item.urlname,
+        description: item.description,
+        members: item.members,
+        blacklisted: !MeetupService.isLegit(item)
+      })
+
+      console.log('Updated the record for ', item.name)
+    }
+  } catch (err) {
+    console.log('Harvest Error:', err)
+    Sentry.captureException(err)
     db.sequelize.close()
   }
 }
