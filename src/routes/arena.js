@@ -9,6 +9,7 @@ const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 const basic = auth.basic({
   realm: 'Protected Area'
 }, function (username, password, callback) {
+  // eslint-disable-next-line standard/no-callback-literal
   callback(username === 'admin' && password === process.env.ARENA_PASSWORD)
 }
 )
@@ -22,6 +23,7 @@ const arena = Arena({
     }
   ]
 })
+// @ts-ignore
 router.use('/', auth.connect(basic), arena)
 
 module.exports = router
