@@ -31,7 +31,7 @@ const groupResolver = {
 
 async function createGroupMutationResolver (parent, args, context, info) {
   if (!context.user) {
-    return mutationResponse('401', false, 'User not found')
+    return mutationResponse(401, false, 'User not found')
   }
 
   const { group } = args
@@ -47,12 +47,12 @@ async function createGroupMutationResolver (parent, args, context, info) {
 
     const newGroup = await db.Group.create(group)
 
-    return mutationResponse('200', true, 'Group created successfully', { group: newGroup })
+    return mutationResponse(200, true, 'Group created successfully', { group: newGroup })
   } catch (err) {
-    mutationResponse('500', false, err.message)
+    mutationResponse(500, false, err.message)
   }
 
-  return mutationResponse('500', false, 'Unknown error')
+  return mutationResponse(500, false, 'Unknown error')
 }
 
 module.exports = { groupResolver, groupQueryResolver, groupsQueryResolver, createGroupMutationResolver }
