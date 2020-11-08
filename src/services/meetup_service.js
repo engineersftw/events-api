@@ -11,14 +11,16 @@ class MeetupService {
     this.consumerSecret = options.consumerSecret
     this.redirectUri = options.redirectUri
     this.accessToken = null
+    this.accessTokenExpiryTime = null
   }
 
   authorizeLink () {
     return `${this.authDomain}/oauth2/authorize?client_id=${this.consumerKey}&response_type=code&redirect_uri=${this.redirectUri}`
   }
 
-  setAccessToken (newToken) {
+  setAccessToken (newToken, expiresIn) {
     this.accessToken = newToken
+    this.accessTokenExpiryTime = Date.now() + 1000 * expiresIn * 0.9
     this.axiosInstance('api').defaults.headers.common['Authorization'] = `Bearer ${this.accessToken}`
   }
 
@@ -34,18 +36,26 @@ class MeetupService {
         }
       ))
 
+      console.log(`[API] POST /oauth2/access <authorization_code> (status ${response.status})`)
+
       if (response.status === 200) {
         return response.data
       } else {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      console.error(`[API] POST /oauth2/access <authorization_code> error: ${err}`)
       Sentry.captureException(err)
       return { error: err.message }
     }
   }
 
   async refreshToken (refreshCode) {
+    if (Date.now() < this.accessTokenExpiryTime) {
+      console.log(`The current token is still valid`)
+      return false
+    }
+
     try {
       const response = await this.axiosInstance('auth').post('/oauth2/access', querystring.stringify(
         {
@@ -56,12 +66,15 @@ class MeetupService {
         }
       ))
 
+      console.log(`[API] POST /oauth2/access <refresh_token> (status ${response.status})`)
+
       if (response.status === 200) {
         return response.data
       } else {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      console.error(`[API] POST /oauth2/access <refresh_token> error: ${err}`)
       Sentry.captureException(err)
       return { error: err.message }
     }
@@ -71,18 +84,23 @@ class MeetupService {
     try {
       const response = await this.axiosInstance('api').get(uri, { params: data })
 
+      console.log(`[API] GET ${uri} ${JSON.stringify(data)} (status ${response.status}, size ${response.headers['content-length']})`)
+
       if (response.status === 200) {
         return response
       } else {
         return { error: 'Invalid response' }
       }
     } catch (err) {
+      console.error(`[API] GET ${uri} ${JSON.stringify(data)} error: ${err}`)
       Sentry.captureException(err)
       return { error: err.message }
     }
   }
 
   static isLegit (group) {
+    if (MeetupService.BLACKLIST_GROUPS.includes(group.link)) { return false }
+
     const { name } = group
     const tokens = name.split(' ')
 
@@ -110,6 +128,16 @@ class MeetupService {
     })
 
     return this.axios[type]
+  }
+
+  static get BLACKLIST_GROUPS () {
+    return [
+      // Not tech related
+      'https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group/',
+      'https://www.meetup.com/Wireless-devices-and-your-health/',
+      // I find this one a bit spammy, feels like a marketing drive
+      'https://www.meetup.com/A-US-stock-market-listedCo-Big-Data-AI-New-Technology/'
+    ]
   }
 
   static get BLACKLIST_TOKENS () {

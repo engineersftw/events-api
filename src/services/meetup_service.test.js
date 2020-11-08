@@ -97,7 +97,7 @@ describe('MeetupService', () => {
         is_pro_admin: false
       })
 
-    service.setAccessToken(newToken)
+    service.setAccessToken(newToken, 3600)
     const result = await service.fetchApi('/members/self')
 
     expect(result.data.name).toEqual('Michael Cheng')
