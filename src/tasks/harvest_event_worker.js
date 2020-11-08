@@ -11,7 +11,7 @@ const Queue = require('bull')
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 
 const workers = process.env.WEB_CONCURRENCY || 1
-const maxJobsPerWorker = 20
+const maxJobsPerWorker = 1
 
 const db = require('../models/index')
 
@@ -35,6 +35,23 @@ function start () {
     console.log('=====================================================')
 
     try {
+      const allGroupEvents = []
+
+      // This code doesn't seem quite right, because all jobs share one
+      // harvester. (Workers fork into separate processes, but jobs do not.)
+      //
+      // So when maxJobsPerWorker = 20, then 20 jobs will call
+      // harvester.prepareService() in parallel, all on the same harvester!
+      //
+      // And then they will call harvester.fetchGroupEvents() all on the same
+      // harvester, all now using the same access token (the last one
+      // generated)!
+      //
+      // We could move the harvester constructor inside this function, but even
+      // then my rate limit was dropping too quickly.
+      //
+      // So I dropped maxJobsPerWorker to 1.
+      //
       await harvester.prepareService()
 
       const eventResponses = await harvester.fetchGroupEvents(job.data)
