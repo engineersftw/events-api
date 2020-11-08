@@ -83,6 +83,8 @@ class MeetupService {
   }
 
   static isLegit (group) {
+    if (MeetupService.BLACKLIST_GROUPS.includes(group.link)) { return false }
+
     const { name } = group
     const tokens = name.split(' ')
 
@@ -110,6 +112,16 @@ class MeetupService {
     })
 
     return this.axios[type]
+  }
+
+  static get BLACKLIST_GROUPS () {
+    return [
+      // Not tech related
+      'https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group/',
+      'https://www.meetup.com/Wireless-devices-and-your-health/',
+      // I find this one a bit spammy, feels like a marketing drive
+      'https://www.meetup.com/A-US-stock-market-listedCo-Big-Data-AI-New-Technology/'
+    ]
   }
 
   static get BLACKLIST_TOKENS () {
