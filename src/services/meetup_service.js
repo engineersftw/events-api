@@ -99,8 +99,9 @@ class MeetupService {
   }
 
   static isLegit (group) {
-    // NOTE: This function may be given a group from the meetup API (above), or
-    // a group from our DB (in removeUnwatedGroups), so beware the differences.
+    // NOTE: This function may be given a group from the meetup API (in
+    // harvest_groups.js), or a group from our DB (in checkExistingEvents), so
+    // beware the differences.
 
     if (MeetupService.BLACKLIST_GROUPS.includes(group.link)) { return false }
 
