@@ -103,6 +103,8 @@ class MeetupService {
     // harvest_groups.js), or a group from our DB (in checkExistingEvents), so
     // beware the differences.
 
+    if (MeetupService.WHITELIST_GROUPS.includes(group.link)) { return true }
+
     if (MeetupService.BLACKLIST_GROUPS.includes(group.link)) { return false }
 
     const { name } = group
@@ -134,7 +136,22 @@ class MeetupService {
     return this.axios[type]
   }
 
+  static get BLACKLIST_TOKENS () {
+    return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
+      'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
+  }
+
+  static get WHITELIST_GROUPS () {
+    // For groups which were caught by the filters, but might actually be interesting for developers
+    return [
+      // This group hosted Brendan's excellent DApps Dev Club in 2019, which taught developers the basics of Solidity
+      // However it looks like some of their meetings have been less code-oriented, so I'm not whitelisting it right now
+      // 'https://www.meetup.com/BlockChain-Dapps-Technology'
+    ]
+  }
+
   static get BLACKLIST_GROUPS () {
+    // For groups which we don't want to show, but which weren't caught by the filters
     return [
       // Not tech related
       'https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group/',
@@ -142,11 +159,6 @@ class MeetupService {
       // I find this one a bit spammy, feels like a marketing drive
       'https://www.meetup.com/A-US-stock-market-listedCo-Big-Data-AI-New-Technology/'
     ]
-  }
-
-  static get BLACKLIST_TOKENS () {
-    return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
-      'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
   }
 }
 
