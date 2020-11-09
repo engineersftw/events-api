@@ -2,6 +2,8 @@ const axios = require('axios')
 const querystring = require('querystring')
 const Sentry = require('@sentry/node')
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
 class MeetupService {
   constructor (options = {}) {
     this.axios = {}
@@ -85,6 +87,22 @@ class MeetupService {
       const response = await this.axiosInstance('api').get(uri, { params: data })
 
       console.log(`[API] GET ${uri} ${JSON.stringify(data)} (status ${response.status}, size ${response.headers['content-length']})`)
+
+      // If we exceed Meetup's rate limit, we will receive "429 Too Many
+      // Requests" failed responses, which are undesirable because no data is
+      // returned. So we will try to prevent that by slowing down processing
+      // when Meetup's remaining limit drops low enough.
+      //
+      // We should set rlrThreshold to around twice the number of workers we
+      // have running.
+      //
+      const rlrThreshold = 15
+      const rateLimitRemaining = response.headers['x-ratelimit-remaining']
+      const shouldDelay = response.status === 429 || (rateLimitRemaining && Number(rateLimitRemaining) <= rlrThreshold)
+      if (shouldDelay) {
+        console.log(`[API] Delaying reply to appease rate limiter (status=${response.status} rlr=${rateLimitRemaining})`)
+        await delay(8 * 1000)
+      }
 
       if (response.status === 200) {
         return response
