@@ -8,8 +8,10 @@ class HarvesterService {
 
   async prepareService () {
     try {
-      this.meetupHarvester = new MeetupHarvester(this.meetup)
-      await this.meetupHarvester.prepareService()
+      if (!this.meetupHarvester) {
+        this.meetupHarvester = new MeetupHarvester(this.meetup)
+        await this.meetupHarvester.prepareService()
+      }
     } catch (err) {
       console.log('Prepare Service Error', err)
       Sentry.captureException(err)

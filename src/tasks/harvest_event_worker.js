@@ -10,7 +10,11 @@ const throng = require('throng')
 const Queue = require('bull')
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 
+// Warning: If I set this above 1, I see a lot of "401 Unauthorized" reponses.
+// I think this is because each worker requests a separate access token, but only the last requested token is valid.
 const workers = process.env.WEB_CONCURRENCY || 1
+
+// I don't recommend setting this above 8.  Their rate limiter might kick in before ours, resulting in jobs that run but don't succeed.
 const maxJobsPerWorker = 1
 
 const db = require('../models/index')
