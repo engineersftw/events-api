@@ -2,6 +2,8 @@ const axios = require('axios')
 const querystring = require('querystring')
 const Sentry = require('@sentry/node')
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
 class MeetupService {
   constructor (options = {}) {
     this.axios = {}
@@ -86,6 +88,22 @@ class MeetupService {
 
       console.log(`[API] GET ${uri} ${JSON.stringify(data)} (status ${response.status}, size ${response.headers['content-length']})`)
 
+      // If we exceed Meetup's rate limit, we will receive "429 Too Many
+      // Requests" failed responses, which are undesirable because no data is
+      // returned. So we will try to prevent that by slowing down processing
+      // when Meetup's remaining limit drops low enough.
+      //
+      // We should set rlrThreshold to around twice the number of workers we
+      // have running.
+      //
+      const rlrThreshold = 15
+      const rateLimitRemaining = response.headers['x-ratelimit-remaining']
+      const shouldDelay = response.status === 429 || (rateLimitRemaining && Number(rateLimitRemaining) <= rlrThreshold)
+      if (shouldDelay) {
+        console.log(`[API] Delaying reply to appease rate limiter (status=${response.status} rlr=${rateLimitRemaining})`)
+        await delay(8 * 1000)
+      }
+
       if (response.status === 200) {
         return response
       } else {
@@ -99,8 +117,11 @@ class MeetupService {
   }
 
   static isLegit (group) {
-    // NOTE: This function may be given a group from the meetup API (above), or
-    // a group from our DB (in removeUnwatedGroups), so beware the differences.
+    // NOTE: This function may be given a group from the meetup API (in
+    // harvest_groups.js), or a group from our DB (in checkExistingEvents), so
+    // beware the differences.
+
+    if (MeetupService.WHITELIST_GROUPS.includes(group.link)) { return true }
 
     if (MeetupService.BLACKLIST_GROUPS.includes(group.link)) { return false }
 
@@ -133,7 +154,22 @@ class MeetupService {
     return this.axios[type]
   }
 
+  static get BLACKLIST_TOKENS () {
+    return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
+      'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
+  }
+
+  static get WHITELIST_GROUPS () {
+    // For groups which were caught by the filters, but might actually be interesting for developers
+    return [
+      // This group hosted Brendan's excellent DApps Dev Club in 2019, which taught developers the basics of Solidity
+      // However it looks like some of their meetings have been less code-oriented, so I'm not whitelisting it right now
+      // 'https://www.meetup.com/BlockChain-Dapps-Technology'
+    ]
+  }
+
   static get BLACKLIST_GROUPS () {
+    // For groups which we don't want to show, but which weren't caught by the filters
     return [
       // Not tech related
       'https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group/',
@@ -141,11 +177,6 @@ class MeetupService {
       // I find this one a bit spammy, feels like a marketing drive
       'https://www.meetup.com/A-US-stock-market-listedCo-Big-Data-AI-New-Technology/'
     ]
-  }
-
-  static get BLACKLIST_TOKENS () {
-    return ['ethereum', 'blockchain', 'bitcoin', 'ico', 'ledger', 'crypto', 'cryptocurrency', 'money', 'gold', 'token',
-      'business', 'enterprise', 'entrepreneur', 'entrepreneurship', 'executive', 'founder', 'investor', 'skillsfuture']
   }
 }
 

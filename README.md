@@ -22,7 +22,7 @@
     ```
 ### Set up your meetup credentials
 
-To pull data from Meetup, you first need to register as a Meetup API consumer:
+To pull data from Meetup, you first need to register as a Meetup API consumer. You can read the full [documentation here](https://www.meetup.com/meetup_api/auth/) but here is the setup process:
 
 1. Visit https://secure.meetup.com/meetup_api/oauth_consumers/ and (if you don't already have a consumer) hit [Create New Consumer]
 
@@ -49,3 +49,11 @@ npm run harvest:events | tee harvest_events.out
 
 npm run harvest:events:worker | tee harvest_events_worker.out
 ```
+
+### Remove unwanted groups from the listing
+
+If there are groups appearing in the events list which you think do not belong, you can add them to the blacklist at the bottom of `meetup_service.js`.
+
+You may like to attach a comment, so that other devs understand why you removed that group, and can check in future whether the decision should still apply.
+
+Then please open up a pull request with your added filters. Thanks!
