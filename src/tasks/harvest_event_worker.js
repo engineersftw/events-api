@@ -73,23 +73,31 @@ async function checkExistingEvents () {
 
 async function deactivateHiddenEvents (groupId, allGroupEvents) {
   // Look for upcoming events for this group in the DB which are no longer
-  // present in the list provided by meetup, and set them as hidden
+  // present in the list provided by meetup, and set them as hidden.
+  //
+  // (Unhiding of events which have become visible again will be done by the
+  // main process.)
 
   const dbEvents = await db.Event.findAll({
     where: {
       platform: 'meetup',
       group_id: groupId,
-      active: true,
-      end_time: { $gt: new Date() }
+      active: true
+      // We only want to consider future events, because our meetup query does
+      // not return past events, so we would hide all past events for no reason!
+      // These queries did not work for me, so instead I do this filter in JS below.
+      // start_time: { $gt: new Date() }
+      // start_time: { $gt: moment().toDate() }
     }
   })
+  const futureDBEvents = dbEvents.filter(event => Number(event.start_time) > Date.now())
 
-  // This is O(n) but our n < 100 so I think we'll survive ;-)
-  const isMissingFromMeetupBatch = (event) => !allGroupEvents.some(item => item.id === event.id)
+  // This is O(n) but since n < 100, this should be acceptable
+  const isVisibleOnPlatform = (event) => allGroupEvents.some(item => item.id === event.platform_identifier)
 
-  for (const event of dbEvents) {
-    if (isMissingFromMeetupBatch(event)) {
-      console.log(`Hiding event '${event.name}' from group ${groupId} because it is no longer visible on meetup.com (check ${event.url})`)
+  for (const event of futureDBEvents) {
+    if (!isVisibleOnPlatform(event)) {
+      console.log(`Hiding event '${event.name}' id '${event.platform_identifier}' from group '${groupId}' because it is no longer visible on meetup.com (see ${event.url})`)
       await event.update({ active: false })
     }
   }
@@ -132,6 +140,8 @@ function start () {
       console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
 
       await deactivateHiddenEvents(job.data.platform_identifier, allGroupEvents)
+
+      console.log('-----------------------------------------------------')
 
       for (const item of allGroupEvents) {
         console.log(`Event: '${item.name}' (${item.link})`)

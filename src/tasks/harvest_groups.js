@@ -37,6 +37,8 @@ async function checkExistingGroups () {
 
 async function harvest () {
   try {
+    console.log('=====================================================')
+
     await harvester.prepareService()
 
     const allGroups = await harvester.fetchGroups()
