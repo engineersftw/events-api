@@ -71,6 +71,30 @@ async function checkExistingEvents () {
   }
 }
 
+async function deactivateHiddenEvents (groupId, allGroupEvents) {
+  // Look for upcoming events for this group in the DB which are no longer
+  // present in the list provided by meetup, and set them as hidden
+
+  const dbEvents = await db.Event.findAll({
+    where: {
+      platform: 'meetup',
+      group_id: groupId,
+      active: true,
+      end_time: { $gt: new Date() }
+    }
+  })
+
+  // This is O(n) but our n < 100 so I think we'll survive ;-)
+  const isMissingFromMeetupBatch = (event) => !allGroupEvents.some(item => item.id === event.id)
+
+  for (const event of dbEvents) {
+    if (isMissingFromMeetupBatch(event)) {
+      console.log(`Hiding event '${event.name}' from group ${groupId} because it is no longer visible on meetup.com (check ${event.url})`)
+      await event.update({ active: false })
+    }
+  }
+}
+
 function start () {
   const harvester = new HarvesterService({
     meetup: {
@@ -107,8 +131,10 @@ function start () {
       const allGroupEvents = eventResponses.events
       console.log(`Harvested ${allGroupEvents.length} events from ${job.data.urlname}`)
 
+      await deactivateHiddenEvents(job.data.platform_identifier, allGroupEvents)
+
       for (const item of allGroupEvents) {
-        console.log('Event:', item.name)
+        console.log(`Event: '${item.name}' (${item.link})`)
 
         const [event, created] = await db.Event.findOrBuild({
           where: {
@@ -144,7 +170,9 @@ function start () {
           start_time: startTime.toDate(),
           end_time: endTime.toDate(),
           latitude: (item.venue ? item.venue.lat : null),
-          longitude: (item.venue ? item.venue.lon : null)
+          longitude: (item.venue ? item.venue.lon : null),
+          // In case this event was added, then hidden, then shown again
+          active: true
         })
 
         console.log('Updated the record for', item.name)
