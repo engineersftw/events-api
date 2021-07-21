@@ -62,7 +62,12 @@ async function checkExistingEvents () {
 
   for (const event of allEvents) {
     const shouldBeActive = isLegitEvent(event)
-    if (event.active !== shouldBeActive) {
+    // This would activate all DB events where the group they belong to is legitimate. But it doesn't check if the event is still visible on meetup.com.
+    // But we don't really need to re-activate inactive events here. That can be done later, when we actually fetch the event.
+    // if (event.active !== shouldBeActive) {
+
+    // We deactivate events from groups which have disappeared or been blacklisted
+    if (!shouldBeActive && event.active) {
       console.log(`Changing active status of event from ${event.active} to ${shouldBeActive}: '${event.url}'`)
       await event.update({
         active: shouldBeActive
