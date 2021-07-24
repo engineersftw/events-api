@@ -52,14 +52,62 @@ async function harvest () {
       .finally(() => {
         console.log('Done.')
         workQueue.close()
-        db.sequelize.close()
       })
   } catch (err) {
     console.log('Harvester Error:', err)
     Sentry.captureException(err)
     workQueue.close()
-    db.sequelize.close()
+  }
+}
+async function checkExistingEvents () {
+  console.log('Checking for any unwanted events')
+
+  // We need to find all events whose group has been removed from the Groups table.
+  //   SELECT * from Events e WHERE e.group_id NOT IN (SELECT platform_identifier from public."Groups");
+  // But I couldn't work out how to execute that through Sequelize.
+  // So instead I fetch all the groups and all the events, and process them in JavaScript!
+  //
+  // I also implement an additional rule: Remove events whose group.blacklisted === true
+
+  const allGroups = await db.Group.findAll({})
+  const groupsById = {}
+  allGroups.forEach(group => {
+    groupsById[group.platform_identifier] = group
+  })
+
+  const allEvents = await db.Event.findAll({
+    attributes: ['id', 'name', 'url', 'group_id', 'group_name', 'active']
+  })
+
+  const isLegitEvent = (event) => {
+    const group = groupsById[event.group_id]
+    const hasParentGroup = !!group
+    const isBlacklisted = group && group.blacklisted
+    return hasParentGroup && !isBlacklisted
+  }
+
+  for (const event of allEvents) {
+    const shouldBeActive = isLegitEvent(event)
+    // We deactivate events from groups which have disappeared or been blacklisted.
+    // We don't re-activate any events here.  That is done in harvest_event_worker.js
+    if (event.active && !shouldBeActive) {
+      console.log(`Changing active status of event from ${event.active} to ${shouldBeActive}: '${event.url}'`)
+      await event.update({
+        active: shouldBeActive
+      })
+    }
   }
 }
 
-harvest()
+(async () => {
+  await harvest()
+  await checkExistingEvents()
+})()
+  .finally(() => {
+    db.sequelize.close()
+  })
+  .catch(err => {
+    console.log('Harvest Events Error:', err)
+    Sentry.captureException(err)
+    db.sequelize.close()
+  })
