@@ -1,6 +1,9 @@
 {
   "name": "esg-events-api",
   "version": "0.0.0",
+  "engines": {
+    "node": "14.15"
+  },
   "scripts": {
     "start": "NODE_ENV=production node ./bin/www",
     "dev": "NODE_ENV=development PORT=3001 DEBUG=app:* nodemon --ignore '*.test.js' --watch src bin/www",
@@ -48,7 +51,7 @@
     "morgan": "~1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pg": "^7.12.0",
+    "pg": "^8.7.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.19.0",
     "sequelize-cli": "^5.5.0",
