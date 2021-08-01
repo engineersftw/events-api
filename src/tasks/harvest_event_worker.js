@@ -12,23 +12,18 @@ const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 const url = require('url')
 const Redis = require('ioredis')
 
-const redisUri = new url.URL(REDIS_URL)
-const redisOpt = {
+const redisUri = url.URL(REDIS_URL)
+const redis = new Redis({
   port: Number(redisUri.port) + 1,
   host: redisUri.hostname,
+  password: redisUri.auth.split(':')[1],
   db: 0,
   tls: {
     rejectUnauthorized: false,
     requestCert: true,
     agent: false
   }
-}
-
-if (redisUri.auth) {
-  redisOpt['password'] = redisUri.auth.split(':')[1]
-}
-
-const redis = new Redis(redisOpt)
+})
 
 // Warning: If I set this above 1, I see a lot of "401 Unauthorized" reponses.
 // I think this is because each worker requests a separate access token, but only the last requested token is valid.
