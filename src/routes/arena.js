@@ -5,21 +5,6 @@ const auth = require('http-auth')
 const Arena = require('bull-arena')
 
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
-const url = require('url')
-const Redis = require('ioredis')
-
-const redisUri = url.URL(REDIS_URL)
-const redis = new Redis({
-  port: Number(redisUri.port) + 1,
-  host: redisUri.hostname,
-  password: redisUri.auth.split(':')[1],
-  db: 0,
-  tls: {
-    rejectUnauthorized: false,
-    requestCert: true,
-    agent: false
-  }
-})
 
 const basic = auth.basic({
   realm: 'Protected Area'
@@ -34,7 +19,7 @@ const arena = Arena({
     {
       name: 'esg_events',
       hostId: 'main_server',
-      url: redis
+      url: REDIS_URL
     }
   ]
 })

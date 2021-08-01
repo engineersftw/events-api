@@ -9,21 +9,6 @@ const throng = require('throng')
 
 const Queue = require('bull')
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
-const url = require('url')
-const Redis = require('ioredis')
-
-const redisUri = url.URL(REDIS_URL)
-const redis = new Redis({
-  port: Number(redisUri.port) + 1,
-  host: redisUri.hostname,
-  password: redisUri.auth.split(':')[1],
-  db: 0,
-  tls: {
-    rejectUnauthorized: false,
-    requestCert: true,
-    agent: false
-  }
-})
 
 // Warning: If I set this above 1, I see a lot of "401 Unauthorized" reponses.
 // I think this is because each worker requests a separate access token, but only the last requested token is valid.
@@ -80,7 +65,7 @@ function start () {
     }
   })
 
-  const workQueue = new Queue('esg_events', redis)
+  const workQueue = new Queue('esg_events', REDIS_URL)
 
   workQueue.process(maxJobsPerWorker, async (job, done) => {
     console.log('=====================================================')
