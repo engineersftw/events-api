@@ -8,8 +8,25 @@ if (process.env.SENTRY_DSN) {
 const db = require('../models/index')
 
 const Queue = require('bull')
+
 const REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
-const workQueue = new Queue('esg_events', REDIS_URL)
+const url = require('url')
+const Redis = require('ioredis')
+
+const redisUri = url.URL(REDIS_URL)
+const redis = new Redis({
+  port: Number(redisUri.port) + 1,
+  host: redisUri.hostname,
+  password: redisUri.auth.split(':')[1],
+  db: 0,
+  tls: {
+    rejectUnauthorized: false,
+    requestCert: true,
+    agent: false
+  }
+})
+
+const workQueue = new Queue('esg_events', redis)
 const delayInterval = parseInt(process.env.EVENT_WORKER_DELAY_INTERVAL) || 12000
 const batchSize = parseInt(process.env.EVENT_WORKER_BATCH_SIZE) || 25
 
