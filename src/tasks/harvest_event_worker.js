@@ -62,7 +62,9 @@ async function checkExistingEvents () {
 
   for (const event of allEvents) {
     const shouldBeActive = isLegitEvent(event)
-    if (event.active !== shouldBeActive) {
+    // We deactivate events from groups which have disappeared or been blacklisted.
+    // We don't activate events here.  That is done later, when the events are harvested.
+    if (event.active && !shouldBeActive) {
       console.log(`Changing active status of event from ${event.active} to ${shouldBeActive}: '${event.url}'`)
       await event.update({
         active: shouldBeActive
