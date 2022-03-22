@@ -5,11 +5,11 @@ if (process.env.SENTRY_DSN) {
   Sentry.init({ dsn: process.env.SENTRY_DSN })
 }
 
-const HarvesterService = require('../services/harvester_service')
-const db = require('../models/index')
+const HarvesterService = require('../../services/harvester_service')
+const db = require('../../models/index')
 const MeetupService = require('../services/meetup_service')
 // @ts-ignore We exported that function on the router, until we find a more suitable place to put it
-const { blackListGroup } = require('../routes/groups')
+const { blackListGroup } = require('../../routes/groups')
 
 const harvester = new HarvesterService({
   meetup: {
