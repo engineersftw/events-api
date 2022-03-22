@@ -14,7 +14,7 @@
     "harvest:groups": "node src/tasks/harvest_groups.js",
     "harvest:events": "node src/tasks/harvest_events.js",
     "harvest:events:worker": "node src/tasks/harvest_event_worker.js",
-    "telegrambot": "node src/tasks/telegram_worker.js",
+    "telegrambot": "node -e 'require(\"./src/tasks/telegram_worker.js\").push()'",
     "scratch": "node src/tasks/scratch.js",
     "db:create": "./node_modules/.bin/sequelize db:create",
     "db:migrate": "./node_modules/.bin/sequelize db:migrate"

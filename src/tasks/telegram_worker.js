@@ -99,7 +99,4 @@ async function push () {
   }
 }
 
-push()
-
-exports.filterEvents = filterEvents
-exports.processEvents = processEvents
+module.exports = { push, filterEvents, processEvents }
