@@ -11,7 +11,7 @@ const authRouter = require('./routes/auth')
 const eventsRouter = require('./routes/events')
 const groupsRouter = require('./routes/groups')
 const arenaRouter = require('./routes/arena')
-const graphqlServer = require('./graphql/graphql_server')
+// const graphqlServer = require('./graphql/graphql_server')
 
 const app = express()
 
@@ -33,7 +33,7 @@ app.use('/events', eventsRouter)
 app.use('/groups', groupsRouter)
 app.use('/arena', arenaRouter)
 
-graphqlServer.applyMiddleware({ app })
+// graphqlServer.applyMiddleware({ app })
 
 if (process.env.NODE_ENV === 'development') { app.use('/oauth', authRouter) }
 

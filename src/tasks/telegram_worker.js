@@ -33,7 +33,7 @@ function filterEvents (event) {
 }
 
 function processEvents (events) {
-  const eventListing = events.map(event => {
+  return events.map(event => {
     return {
       name: event.name,
       location: event.location,
@@ -54,8 +54,6 @@ function processEvents (events) {
         e.formatted_time === event.formatted_time
       ))
     })
-
-  return eventListing
 }
 
 async function push () {
@@ -80,21 +78,25 @@ async function push () {
         parse_mode: 'markdown',
         disable_web_page_preview: true
       }
-      axios.post(`https://api.telegram.org/bot${token}/sendMessage`, data)
+      try {
+        await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, data)
+      } catch (err) {
+        console.error(err)
+      }
     } else {
       const data = {
         chat_id: chatId,
         text: `No events found for ${formattedDateToQuery}`
       }
-      axios.post(`https://api.telegram.org/bot${token}/sendMessage`, data)
-      console.error(`No events found for ${formattedDateToQuery}`)
+      try {
+        await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, data)
+      } catch (err) {
+        console.error(err)
+      }
     }
   } catch (e) {
     console.error(e)
   }
 }
 
-push()
-
-exports.filterEvents = filterEvents
-exports.processEvents = processEvents
+module.exports = { push, filterEvents, processEvents }

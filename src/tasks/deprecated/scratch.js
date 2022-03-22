@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const db = require('../models/index')
+const db = require('../../models/index')
 
 const newGroup = {
   score: 1,
