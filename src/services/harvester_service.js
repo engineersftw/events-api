@@ -1,59 +1,50 @@
-const MeetupHarvester = require('./harvesters/meetup_harvester')
+const axios = require('axios')
 const Sentry = require('@sentry/node')
+const { fetchMeetupGroups } = require('./utils/scraper')
+const { getEventDetails } = require('./utils/eventParser')
+const { parseRSS } = require('./utils/rssParser')
 
+if (process.env.NODE_ENV === 'development') {
+  axios.interceptors.request.use(request => {
+    console.debug('Starting Request to:', request.url)
+    return request
+  })
+
+  axios.interceptors.response.use(response => {
+    console.debug('Received response: ', response.status)
+    return response
+  })
+}
 class HarvesterService {
-  constructor (options = {}) {
-    this.meetup = options.meetup
-  }
-
-  async prepareService () {
+  async fetchGroupsWithRss () {
     try {
-      if (!this.meetupHarvester) {
-        this.meetupHarvester = new MeetupHarvester(this.meetup)
-        await this.meetupHarvester.prepareService()
-      }
-    } catch (err) {
-      console.log('Prepare Service Error', err)
-      Sentry.captureException(err)
-    }
-  }
-
-  async fetchGroups () {
-    const allGroups = {
-      meetup: []
-    }
-
-    try {
-      const meetupGroups = await this.meetupHarvester.fetchGroups()
-
-      allGroups.meetup.push(...meetupGroups)
+      return await fetchMeetupGroups()
     } catch (err) {
       console.log('Harvester Error', err)
       Sentry.captureException(err)
     }
-
-    return allGroups
   }
 
-  async fetchGroupEvents (group) {
-    const allGroupEvents = []
+  async fetchAllUpcomingEventsFromRss (listOfGroupDetails) {
+    const promises = []
 
-    try {
-      switch (group.platform) {
-        case 'meetup':
-          const meetupGroupEvents = await this.meetupHarvester.fetchGroupEvents(group)
-          allGroupEvents.push(...meetupGroupEvents)
-          break
-      }
-    } catch (err) {
-      console.log('Harvester Error', err)
-      Sentry.captureException(err)
-    }
+    listOfGroupDetails.forEach(groupDetails => {
+      promises.push(parseRSS(groupDetails.eventsUrl))
+    })
 
-    return {
-      group: group,
-      events: allGroupEvents
-    }
+    return Promise.all(promises)
+  }
+
+  async fetchAllEventDetails (listsOfGroupEvents) {
+    const requestsToMake = []
+
+    listsOfGroupEvents.forEach(groupEventsList => {
+      groupEventsList.forEach(event => {
+        requestsToMake.push(getEventDetails(event.guid))
+      })
+    })
+
+    return Promise.all(requestsToMake)
   }
 }
 
