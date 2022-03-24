@@ -56,6 +56,13 @@ function processEvents (events) {
     })
 }
 
+function createFormattedMessage (event) {
+  const formattedName = event.name.trim()
+  const eventHyperlink = `[${formattedName}](${event.url})`
+  const locationText = event.location ? ` - 📍${event.location}` : ''
+  return `⏰ ${event.formatted_time} - ${eventHyperlink} (${event.group_name})${locationText}`
+}
+
 async function push () {
   try {
     const dateToQuery = moment().add(1, 'day')
@@ -66,7 +73,7 @@ async function push () {
     if (events.length > 0) {
       const eventListing = processEvents(events)
 
-      const messages = eventListing.map(event => `⏰ ${event.formatted_time} - [${event.name}](${event.url}) (${event.group_name}) - 📍${event.location}`)
+      const messages = eventListing.map(event => createFormattedMessage(event))
       const header = `*🗓 ${messages.length} Upcoming Events for ${dateToQuery.format('DD MMM YYYY, ddd')}* `
       const footer = `_Brought to you by Engineers.SG_`
 
@@ -99,4 +106,4 @@ async function push () {
   }
 }
 
-module.exports = { push, filterEvents, processEvents }
+module.exports = { push, filterEvents, processEvents, createFormattedMessage }
