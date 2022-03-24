@@ -1,2 +1,2 @@
 web: npm start
-worker: npm run harvest:events:worker
+# worker: npm run harvest:events:worker
