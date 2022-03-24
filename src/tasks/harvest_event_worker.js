@@ -59,7 +59,7 @@ async function start () {
           description: htmlToText.fromString(item.description),
           location,
           rsvp_count: item.yes_rsvp_count,
-          url: item.link,
+          url: item.eventUrl,
           group_id: item.group.id,
           group_name: item.group.name,
           group_url: `https://www.meetup.com/${item.group.urlname}`,
