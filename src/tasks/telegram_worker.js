@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { default: axios } = require('axios')
+const { blacklistedGroupUrls } = require('../config/blacklist')
 
 const token = process.env.TELEGRAM_BOT_TOKEN
 const chatId = Number(process.env.TELEGRAM_CHAT_ID)
@@ -27,9 +28,7 @@ async function fetchEvents (date) {
 }
 
 function filterEvents (event) {
-  // no offense but these groups aren't tech related
-  return (event.group_name !== 'Kakis SG Anything Watever Meetup Group') &&
-        (event.group_name !== 'EMF & Wireless Radiation Safety')
+  return !blacklistedGroupUrls.includes(event.group_url)
 }
 
 function processEvents (events) {
