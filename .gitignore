@@ -62,3 +62,4 @@ typings/
 
 # cache generated from web scraping
 .cache
+harvest_events_worker.out

@@ -57,10 +57,9 @@ function processEvents (events) {
 }
 
 function createFormattedMessage (event) {
-  const formattedName = event.name.trim()
-  const eventHyperlink = `[${formattedName}](${event.url})`
+  const eventName = event.url ? `[${event.name.trim()}](${event.url})` : event.name.trim()
   const locationText = event.location ? ` - 📍${event.location}` : ''
-  return `⏰ ${event.formatted_time} - ${eventHyperlink} (${event.group_name})${locationText}`
+  return `⏰ ${event.formatted_time} - ${eventName} (${event.group_name})${locationText}`
 }
 
 async function push () {
