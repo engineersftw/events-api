@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { default: axios } = require('axios')
+const { blacklistedGroupUrls } = require('../config/blacklist')
 
 const token = process.env.TELEGRAM_BOT_TOKEN
 const chatId = Number(process.env.TELEGRAM_CHAT_ID)
@@ -27,9 +28,7 @@ async function fetchEvents (date) {
 }
 
 function filterEvents (event) {
-  // no offense but these groups aren't tech related
-  return (event.group_name !== 'Kakis SG Anything Watever Meetup Group') &&
-        (event.group_name !== 'EMF & Wireless Radiation Safety')
+  return !blacklistedGroupUrls.includes(event.group_url)
 }
 
 function processEvents (events) {
@@ -56,6 +55,12 @@ function processEvents (events) {
     })
 }
 
+function createFormattedMessage (event) {
+  const eventName = event.url ? `[${event.name.trim()}](${event.url})` : event.name.trim()
+  const locationText = event.location ? ` - 📍${event.location}` : ''
+  return `⏰ ${event.formatted_time} - ${eventName} (${event.group_name})${locationText}`
+}
+
 async function push () {
   try {
     const dateToQuery = moment().add(1, 'day')
@@ -66,7 +71,7 @@ async function push () {
     if (events.length > 0) {
       const eventListing = processEvents(events)
 
-      const messages = eventListing.map(event => `⏰ ${event.formatted_time} - [${event.name}](${event.url}) (${event.group_name}) - 📍${event.location}`)
+      const messages = eventListing.map(event => createFormattedMessage(event))
       const header = `*🗓 ${messages.length} Upcoming Events for ${dateToQuery.format('DD MMM YYYY, ddd')}* `
       const footer = `_Brought to you by Engineers.SG_`
 
@@ -99,4 +104,4 @@ async function push () {
   }
 }
 
-module.exports = { push, filterEvents, processEvents }
+module.exports = { push, filterEvents, processEvents, createFormattedMessage }

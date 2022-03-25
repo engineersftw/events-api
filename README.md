@@ -52,7 +52,7 @@ npm run harvest:events:worker | tee harvest_events_worker.out
 
 ### Remove unwanted groups from the listing
 
-If there are groups appearing in the events list which you think do not belong, you can add them to the blacklist at the bottom of `meetup_service.js`.
+If there are groups appearing in the events list which you think do not belong, you can add them to the blacklist at `src/config/blacklist.js`
 
 You may like to attach a comment, so that other devs understand why you removed that group, and can check in future whether the decision should still apply.
 
