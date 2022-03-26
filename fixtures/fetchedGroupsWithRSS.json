@@ -1,0 +1,402 @@
+{
+    "abcc exchange club": {
+        "eventsUrl": "https://www.meetup.com/abcc-exchange-club/events/rss",
+        "groupUrl": "https://www.meetup.com/abcc-exchange-club"
+    },
+    "ac sin": {
+        "eventsUrl": "https://www.meetup.com/ac-sin/events/rss",
+        "groupUrl": "https://www.meetup.com/ac-sin"
+    },
+    "Agile Circles Singapore": {
+        "eventsUrl": "https://www.meetup.com/Agile-Circles-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Agile-Circles-Singapore"
+    },
+    "Agile Singapore": {
+        "eventsUrl": "https://www.meetup.com/Agile-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Agile-Singapore"
+    },
+    "all things startups tech investing vc funding singapore": {
+        "eventsUrl": "https://www.meetup.com/all-things-startups-tech-investing-vc-funding-singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/all-things-startups-tech-investing-vc-funding-singapore"
+    },
+    "Ansible Singapore": {
+        "eventsUrl": "https://www.meetup.com/Ansible-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Ansible-Singapore"
+    },
+    "antler southeast asia": {
+        "eventsUrl": "https://www.meetup.com/antler-southeast-asia/events/rss",
+        "groupUrl": "https://www.meetup.com/antler-southeast-asia"
+    },
+    "Artificial General Intelligence Singapore": {
+        "eventsUrl": "https://www.meetup.com/Artificial-General-Intelligence-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Artificial-General-Intelligence-Singapore"
+    },
+    "asean scaled agile framework meetup group": {
+        "eventsUrl": "https://www.meetup.com/asean-scaled-agile-framework-meetup-group/events/rss",
+        "groupUrl": "https://www.meetup.com/asean-scaled-agile-framework-meetup-group"
+    },
+    "aseans ms women in tech": {
+        "eventsUrl": "https://www.meetup.com/aseans-ms-women-in-tech/events/rss",
+        "groupUrl": "https://www.meetup.com/aseans-ms-women-in-tech"
+    },
+    "Automation Anywhere RPA Singapore": {
+        "eventsUrl": "https://www.meetup.com/Automation-Anywhere-RPA-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Automation-Anywhere-RPA-Singapore"
+    },
+    "Automotive Security Research Group Singapore ASRG SIN": {
+        "eventsUrl": "https://www.meetup.com/Automotive-Security-Research-Group-Singapore-ASRG-SIN/events/rss",
+        "groupUrl": "https://www.meetup.com/Automotive-Security-Research-Group-Singapore-ASRG-SIN"
+    },
+    "AWS SG": {
+        "eventsUrl": "https://www.meetup.com/AWS-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/AWS-SG"
+    },
+    "AzureSG": {
+        "eventsUrl": "https://www.meetup.com/AzureSG/events/rss",
+        "groupUrl": "https://www.meetup.com/AzureSG"
+    },
+    "BlockChain Dapps Technology": {
+        "eventsUrl": "https://www.meetup.com/BlockChain-Dapps-Technology/events/rss",
+        "groupUrl": "https://www.meetup.com/BlockChain-Dapps-Technology"
+    },
+    "Blockchain Educators SG": {
+        "eventsUrl": "https://www.meetup.com/Blockchain-Educators-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/Blockchain-Educators-SG"
+    },
+    "ce9b9be8 0054 49b0 a3f2 7f7f86bfe4dc": {
+        "eventsUrl": "https://www.meetup.com/ce9b9be8-0054-49b0-a3f2-7f7f86bfe4dc/events/rss",
+        "groupUrl": "https://www.meetup.com/ce9b9be8-0054-49b0-a3f2-7f7f86bfe4dc"
+    },
+    "cloud sg": {
+        "eventsUrl": "https://www.meetup.com/cloud-sg/events/rss",
+        "groupUrl": "https://www.meetup.com/cloud-sg"
+    },
+    "Conversational AI Singapore": {
+        "eventsUrl": "https://www.meetup.com/Conversational-AI-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Conversational-AI-Singapore"
+    },
+    "data ai meetup sg": {
+        "eventsUrl": "https://www.meetup.com/data-ai-meetup-sg/events/rss",
+        "groupUrl": "https://www.meetup.com/data-ai-meetup-sg"
+    },
+    "data engineering sg": {
+        "eventsUrl": "https://www.meetup.com/data-engineering-sg/events/rss",
+        "groupUrl": "https://www.meetup.com/data-engineering-sg"
+    },
+    "Data Vis Singapore": {
+        "eventsUrl": "https://www.meetup.com/Data-Vis-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Data-Vis-Singapore"
+    },
+    "dbs singapore hack2hire": {
+        "eventsUrl": "https://www.meetup.com/dbs-singapore-hack2hire/events/rss",
+        "groupUrl": "https://www.meetup.com/dbs-singapore-hack2hire"
+    },
+    "DesignResearchSG": {
+        "eventsUrl": "https://www.meetup.com/DesignResearchSG/events/rss",
+        "groupUrl": "https://www.meetup.com/DesignResearchSG"
+    },
+    "devops singapore": {
+        "eventsUrl": "https://www.meetup.com/devops-singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/devops-singapore"
+    },
+    "Drupal SG": {
+        "eventsUrl": "https://www.meetup.com/Drupal-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/Drupal-SG"
+    },
+    "Emacs SG": {
+        "eventsUrl": "https://www.meetup.com/Emacs-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/Emacs-SG"
+    },
+    "Filecoin Singapore": {
+        "eventsUrl": "https://www.meetup.com/Filecoin-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Filecoin-Singapore"
+    },
+    "FintechSingaporeMeetup": {
+        "eventsUrl": "https://www.meetup.com/FintechSingaporeMeetup/events/rss",
+        "groupUrl": "https://www.meetup.com/FintechSingaporeMeetup"
+    },
+    "Flutter Singapore": {
+        "eventsUrl": "https://www.meetup.com/Flutter-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Flutter-Singapore"
+    },
+    "founders network singapore": {
+        "eventsUrl": "https://www.meetup.com/founders-network-singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/founders-network-singapore"
+    },
+    "Google Cloud_Meetup_Singapore_by_Cloud Ace": {
+        "eventsUrl": "https://www.meetup.com/Google-Cloud_Meetup_Singapore_by_Cloud-Ace/events/rss",
+        "groupUrl": "https://www.meetup.com/Google-Cloud_Meetup_Singapore_by_Cloud-Ace"
+    },
+    "Hacks Hackers Singapore": {
+        "eventsUrl": "https://www.meetup.com/Hacks-Hackers-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Hacks-Hackers-Singapore"
+    },
+    "Health 2 0 Singapore": {
+        "eventsUrl": "https://www.meetup.com/Health-2-0-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Health-2-0-Singapore"
+    },
+    "Hyperledger Singapore": {
+        "eventsUrl": "https://www.meetup.com/Hyperledger-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Hyperledger-Singapore"
+    },
+    "inlayman sg": {
+        "eventsUrl": "https://www.meetup.com/inlayman-sg/events/rss",
+        "groupUrl": "https://www.meetup.com/inlayman-sg"
+    },
+    "iosappdev": {
+        "eventsUrl": "https://www.meetup.com/iosappdev/events/rss",
+        "groupUrl": "https://www.meetup.com/iosappdev"
+    },
+    "IxDA Singapore": {
+        "eventsUrl": "https://www.meetup.com/IxDA-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/IxDA-Singapore"
+    },
+    "Kakis SG Anything Watever Meetup Group": {
+        "eventsUrl": "https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Kakis-SG-Anything-Watever-Meetup-Group"
+    },
+    "Kong Singapore": {
+        "eventsUrl": "https://www.meetup.com/Kong-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Kong-Singapore"
+    },
+    "Le Wagon Singapore Coding Bootcamp": {
+        "eventsUrl": "https://www.meetup.com/Le-Wagon-Singapore-Coding-Bootcamp/events/rss",
+        "groupUrl": "https://www.meetup.com/Le-Wagon-Singapore-Coding-Bootcamp"
+    },
+    "Lean about Microsoft Flow from an insider": {
+        "eventsUrl": "https://www.meetup.com/Lean-about-Microsoft-Flow-from-an-insider/events/rss",
+        "groupUrl": "https://www.meetup.com/Lean-about-Microsoft-Flow-from-an-insider"
+    },
+    "ManageEngine Singapore events": {
+        "eventsUrl": "https://www.meetup.com/ManageEngine-Singapore-events/events/rss",
+        "groupUrl": "https://www.meetup.com/ManageEngine-Singapore-events"
+    },
+    "microsoft azure singapore community": {
+        "eventsUrl": "https://www.meetup.com/microsoft-azure-singapore-community/events/rss",
+        "groupUrl": "https://www.meetup.com/microsoft-azure-singapore-community"
+    },
+    "mssgug": {
+        "eventsUrl": "https://www.meetup.com/mssgug/events/rss",
+        "groupUrl": "https://www.meetup.com/mssgug"
+    },
+    "NET Developers SG": {
+        "eventsUrl": "https://www.meetup.com/NET-Developers-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/NET-Developers-SG"
+    },
+    "Never Code Alone SG": {
+        "eventsUrl": "https://www.meetup.com/Never-Code-Alone-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/Never-Code-Alone-SG"
+    },
+    "NUSHackers": {
+        "eventsUrl": "https://www.meetup.com/NUSHackers/events/rss",
+        "groupUrl": "https://www.meetup.com/NUSHackers"
+    },
+    "opensource 101": {
+        "eventsUrl": "https://www.meetup.com/opensource-101/events/rss",
+        "groupUrl": "https://www.meetup.com/opensource-101"
+    },
+    "Product School Singapore": {
+        "eventsUrl": "https://www.meetup.com/Product-School-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Product-School-Singapore"
+    },
+    "producttalkssingapore": {
+        "eventsUrl": "https://www.meetup.com/producttalkssingapore/events/rss",
+        "groupUrl": "https://www.meetup.com/producttalkssingapore"
+    },
+    "ProductTonic Meetup": {
+        "eventsUrl": "https://www.meetup.com/ProductTonic-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/ProductTonic-Meetup"
+    },
+    "R User Group SG": {
+        "eventsUrl": "https://www.meetup.com/R-User-Group-SG/events/rss",
+        "groupUrl": "https://www.meetup.com/R-User-Group-SG"
+    },
+    "scrum mastery": {
+        "eventsUrl": "https://www.meetup.com/scrum-mastery/events/rss",
+        "groupUrl": "https://www.meetup.com/scrum-mastery"
+    },
+    "Serverless Singapore": {
+        "eventsUrl": "https://www.meetup.com/Serverless-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Serverless-Singapore"
+    },
+    "ServiceNow Developers Singapore Meetup": {
+        "eventsUrl": "https://www.meetup.com/ServiceNow-Developers-Singapore-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/ServiceNow-Developers-Singapore-Meetup"
+    },
+    "sg linux": {
+        "eventsUrl": "https://www.meetup.com/sg-linux/events/rss",
+        "groupUrl": "https://www.meetup.com/sg-linux"
+    },
+    "sgphpug": {
+        "eventsUrl": "https://www.meetup.com/sgphpug/events/rss",
+        "groupUrl": "https://www.meetup.com/sgphpug"
+    },
+    "SGSecurityMG": {
+        "eventsUrl": "https://www.meetup.com/SGSecurityMG/events/rss",
+        "groupUrl": "https://www.meetup.com/SGSecurityMG"
+    },
+    "Singapore AI Developers Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-AI-Developers-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-AI-Developers-Group"
+    },
+    "singapore ai technology meetup": {
+        "eventsUrl": "https://www.meetup.com/singapore-ai-technology-meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/singapore-ai-technology-meetup"
+    },
+    "Singapore AIX IBM i Linux on Power Meetup Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-AIX-IBM-i-Linux-on-Power-Meetup-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-AIX-IBM-i-Linux-on-Power-Meetup-Group"
+    },
+    "Singapore Artificial Intelligence": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Artificial-Intelligence/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Artificial-Intelligence"
+    },
+    "Singapore Artificial Intelligence Deep Learning": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Artificial-Intelligence-Deep-Learning/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Artificial-Intelligence-Deep-Learning"
+    },
+    "Singapore Cloud Computing Meetup": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Cloud-Computing-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Cloud-Computing-Meetup"
+    },
+    "Singapore Cyber Security for Controls Systems": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Cyber-Security-for-Controls-Systems/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Cyber-Security-for-Controls-Systems"
+    },
+    "Singapore Data Engineering Meetup": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Data-Engineering-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Data-Engineering-Meetup"
+    },
+    "singapore devops and qa community by mirav academy": {
+        "eventsUrl": "https://www.meetup.com/singapore-devops-and-qa-community-by-mirav-academy/events/rss",
+        "groupUrl": "https://www.meetup.com/singapore-devops-and-qa-community-by-mirav-academy"
+    },
+    "Singapore Elastic Fantastics": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Elastic-Fantastics/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Elastic-Fantastics"
+    },
+    "Singapore HashiCorp User Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-HashiCorp-User-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-HashiCorp-User-Group"
+    },
+    "Singapore iOS Dev Scout Meetup": {
+        "eventsUrl": "https://www.meetup.com/Singapore-iOS-Dev-Scout-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-iOS-Dev-Scout-Meetup"
+    },
+    "Singapore JS": {
+        "eventsUrl": "https://www.meetup.com/Singapore-JS/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-JS"
+    },
+    "Singapore Kafka Meetup": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Kafka-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Kafka-Meetup"
+    },
+    "Singapore Kubernetes User Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Kubernetes-User-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Kubernetes-User-Group"
+    },
+    "Singapore LeetCode": {
+        "eventsUrl": "https://www.meetup.com/Singapore-LeetCode/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-LeetCode"
+    },
+    "Singapore MongoDB User Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-MongoDB-User-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-MongoDB-User-Group"
+    },
+    "Singapore Neo4j Meetup": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Neo4j-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Neo4j-Meetup"
+    },
+    "Singapore NixOS Nix User Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-NixOS-Nix-User-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-NixOS-Nix-User-Group"
+    },
+    "Singapore Power Platform User Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Power-Platform-User-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Power-Platform-User-Group"
+    },
+    "singapore product design": {
+        "eventsUrl": "https://www.meetup.com/singapore-product-design/events/rss",
+        "groupUrl": "https://www.meetup.com/singapore-product-design"
+    },
+    "Singapore Ruby Group": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Ruby-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Ruby-Group"
+    },
+    "Singapore Scaled Agile Framework SAFe Meetup": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Scaled-Agile-Framework-SAFe-Meetup/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Scaled-Agile-Framework-SAFe-Meetup"
+    },
+    "Singapore Startup Founder 101": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Startup-Founder-101/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Startup-Founder-101"
+    },
+    "Singapore TechMeetups": {
+        "eventsUrl": "https://www.meetup.com/Singapore-TechMeetups/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-TechMeetups"
+    },
+    "Singapore Technologists": {
+        "eventsUrl": "https://www.meetup.com/Singapore-Technologists/events/rss",
+        "groupUrl": "https://www.meetup.com/Singapore-Technologists"
+    },
+    "singapore yugabytedb user group": {
+        "eventsUrl": "https://www.meetup.com/singapore-yugabytedb-user-group/events/rss",
+        "groupUrl": "https://www.meetup.com/singapore-yugabytedb-user-group"
+    },
+    "Software Craftsmanship Singapore": {
+        "eventsUrl": "https://www.meetup.com/Software-Craftsmanship-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Software-Craftsmanship-Singapore"
+    },
+    "Startup Agile Group Singapore": {
+        "eventsUrl": "https://www.meetup.com/Startup-Agile-Group-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Startup-Agile-Group-Singapore"
+    },
+    "Startup Prodigy Singapore": {
+        "eventsUrl": "https://www.meetup.com/Startup-Prodigy-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Startup-Prodigy-Singapore"
+    },
+    "Tech Startup Entrepreneurs Venture Capital MasterMinds Group": {
+        "eventsUrl": "https://www.meetup.com/Tech-Startup-Entrepreneurs-Venture-Capital-MasterMinds-Group/events/rss",
+        "groupUrl": "https://www.meetup.com/Tech-Startup-Entrepreneurs-Venture-Capital-MasterMinds-Group"
+    },
+    "Tech Talks Thoughtworks Singapore": {
+        "eventsUrl": "https://www.meetup.com/Tech-Talks-Thoughtworks-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Tech-Talks-Thoughtworks-Singapore"
+    },
+    "Tech Talks Wise Singapore": {
+        "eventsUrl": "https://www.meetup.com/Tech-Talks-Wise-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Tech-Talks-Wise-Singapore"
+    },
+    "the argo meetup singapore": {
+        "eventsUrl": "https://www.meetup.com/the-argo-meetup-singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/the-argo-meetup-singapore"
+    },
+    "TIBCO Singapore": {
+        "eventsUrl": "https://www.meetup.com/TIBCO-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/TIBCO-Singapore"
+    },
+    "tinyml enabling ultra low power ml at the edge singapore": {
+        "eventsUrl": "https://www.meetup.com/tinyml-enabling-ultra-low-power-ml-at-the-edge-singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/tinyml-enabling-ultra-low-power-ml-at-the-edge-singapore"
+    },
+    "Training Certification GCP AWS Azure CNCF": {
+        "eventsUrl": "https://www.meetup.com/Training-Certification-GCP-AWS-Azure-CNCF/events/rss",
+        "groupUrl": "https://www.meetup.com/Training-Certification-GCP-AWS-Azure-CNCF"
+    },
+    "tryScrum Studio Singapore": {
+        "eventsUrl": "https://www.meetup.com/tryScrum-Studio-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/tryScrum-Studio-Singapore"
+    },
+    "Wearable Technologies Singapore": {
+        "eventsUrl": "https://www.meetup.com/Wearable-Technologies-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Wearable-Technologies-Singapore"
+    },
+    "Women Who Code Singapore": {
+        "eventsUrl": "https://www.meetup.com/Women-Who-Code-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/Women-Who-Code-Singapore"
+    },
+    "WordPress Singapore": {
+        "eventsUrl": "https://www.meetup.com/WordPress-Singapore/events/rss",
+        "groupUrl": "https://www.meetup.com/WordPress-Singapore"
+    }
+}
