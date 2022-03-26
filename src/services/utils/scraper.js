@@ -25,7 +25,7 @@ class CustomPlugin {
 
 const meetupGroupOptions = {
   urls: [
-    'https://www.meetup.com/cities/sg/singapore/tech/?country=sg&zipstatecity=singapore&category_names=tech'
+    'https://www.meetup.com/cities/sg/singapore/tech/?country=sg&zipstatecity=singapore&category_names=tech&sort=founded_date'
   ],
   directory: './cache',
   plugins: [new CustomPlugin()],
