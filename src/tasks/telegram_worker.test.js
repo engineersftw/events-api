@@ -103,3 +103,67 @@ describe('filterEvents', () => {
     ])
   })
 })
+
+describe('processEvents', () => {
+  // this happens when event organizer cancels an event, and then creates a new one with same content.
+  const listOfDuplicateEvents = [
+    {
+      id: 377,
+      name: 'Hands-on Study Group Meeting #2',
+      description: 'Hi everyone, This will be a study group meeting, occurring every other Saturday\nfrom March 12th. I will share the material for the meeting before the event.\nThanks. Seyed',
+      location: '',
+      rsvp_count: 35,
+      url: 'https://www.meetup.com/Artificial-General-Intelligence-Singapore/events/283517352',
+      group_id: '31606701',
+      group_name: 'Artificial General Intelligence Singapore',
+      group_url: 'https://www.meetup.com/Artificial-General-Intelligence-Singapore',
+      start_time: '2022-03-25T18:00:00.000Z',
+      formatted_time: '26 Mar 2022, Sat, 10:00 am',
+      end_time: '2022-03-25T19:00:00.000Z',
+      platform: 'meetup',
+      latitude: null,
+      longitude: null,
+      createdAt: '2022-03-22T12:28:41.666Z',
+      updatedAt: '2022-03-25T02:37:59.779Z',
+      platform_identifier: '283517352',
+      active: true
+    },
+    {
+      id: 378,
+      name: 'Hands-on Study Group Meeting #2',
+      description: 'Hi everyone, This will be a study group meeting, occurring every other Saturday\nfrom March 12th. I will share the material for the meeting before the event.\nThanks. Seyed',
+      location: '',
+      rsvp_count: 3,
+      url: 'https://www.meetup.com/Artificial-General-Intelligence-Singapore/events/284730685',
+      group_id: '31606701',
+      group_name: 'Artificial General Intelligence Singapore',
+      group_url: 'https://www.meetup.com/Artificial-General-Intelligence-Singapore',
+      start_time: '2022-03-25T18:00:00.000Z',
+      formatted_time: '26 Mar 2022, Sat, 10:00 am',
+      end_time: '2022-03-25T19:00:00.000Z',
+      platform: 'meetup',
+      latitude: null,
+      longitude: null,
+      createdAt: '2022-03-22T12:28:41.676Z',
+      updatedAt: '2022-03-25T02:37:59.788Z',
+      platform_identifier: '284730685',
+      active: true
+    }
+  ]
+
+  it('should deduplicate events that have same name, location, group name and formatted time ', () => {
+    expect(processEvents(listOfDuplicateEvents)).toHaveLength(1)
+  })
+
+  it('should return events with only their name, location, url, group name, group url and formatted time', () => {
+    const event = listOfDuplicateEvents[0]
+    expect(processEvents(listOfDuplicateEvents)).toStrictEqual([{
+      name: event.name,
+      location: event.location,
+      url: event.url,
+      group_name: event.group_name,
+      group_url: event.group_url,
+      formatted_time: moment(event.start_time).tz('Asia/Singapore').format('h:mm a')
+    }])
+  })
+})

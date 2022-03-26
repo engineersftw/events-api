@@ -44,11 +44,9 @@ function processEvents (events) {
   })
     .filter(filterEvents)
     .filter((event, index, self) => {
-      // deduplicates events
       return index === self.findIndex((e) => (
         e.name === event.name &&
         e.location === event.location &&
-        e.url === event.url &&
         e.group_name === event.group_name &&
         e.formatted_time === event.formatted_time
       ))
