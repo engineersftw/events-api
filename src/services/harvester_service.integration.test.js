@@ -5,6 +5,11 @@ const fetchedEventDetails = require('../../fixtures/fetchedEventDetails.json')
 const db = require('../models/index')
 
 describe('Harvester Service', () => {
+  beforeAll(() => {
+    let numEventsInRss = 0
+    Object.values(fetchedEventsFromRSS).forEach(eventArray => { numEventsInRss += eventArray.length })
+    expect(numEventsInRss).toBe(fetchedEventDetails.length)
+  })
   beforeEach(() => {
     harvesterService.fetchGroups = jest.fn()
       .mockResolvedValueOnce(fetchedGroups)
@@ -30,12 +35,12 @@ describe('Harvester Service', () => {
     await db.sequelize.close()
   })
 
-  it('should save all fetched events into DB if they do not already exist', async () => {
+  it('should save all fetched events and groups into DB if they do not already exist', async () => {
     await harvesterService.fetchAndSaveItemsInDB()
-    const events = await db.Event.findAll({ })
-    expect(events).toHaveLength(fetchedEventDetails.length - 1) // there is one event inside that is a duplicate of another
+    const events = await db.Event.findAll({})
+    expect(events).toHaveLength(fetchedEventDetails.length)
 
     const groups = await db.Group.findAll({})
-    expect(groups).toHaveLength(fetchedGroups.length)
+    expect(groups).toHaveLength(Object.keys(fetchedGroups).length)
   })
 })
