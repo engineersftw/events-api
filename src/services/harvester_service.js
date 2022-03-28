@@ -1,4 +1,3 @@
-const axios = require('axios')
 const moment = require('moment-timezone')
 const htmlToText = require('html-to-text')
 const Sentry = require('@sentry/node')
@@ -8,22 +7,10 @@ const { parseRSS, getRssUrlForGroup } = require('./utils/rssParser')
 const { getGroupDetails } = require('./utils/groupParser')
 
 const db = require('../models/index')
-
-if (process.env.NODE_ENV === 'development') {
-  axios.interceptors.request.use(request => {
-    console.debug('Starting Request to:', request.url)
-    return request
-  })
-
-  axios.interceptors.response.use(response => {
-    console.debug('Received response: ', response.status)
-    return response
-  })
-}
 class HarvesterService {
-  async fetchGroups () {
+  async fetchGroups ({ pageNumber }) {
     try {
-      return await fetchMeetupGroups()
+      return await fetchMeetupGroups({ pageNumber })
     } catch (err) {
       console.log('Harvester Error', err)
       Sentry.captureException(err)
@@ -58,23 +45,22 @@ class HarvesterService {
     const fetchedGroupDetails = await Promise.all(promises)
 
     console.debug(`Finished fetching groups...`)
-    for (const groupDetails of fetchedGroupDetails) {
+    for await (const groupDetails of fetchedGroupDetails) {
       try {
         // eslint-disable-next-line camelcase
         const { platform_identifier } = groupDetails
         const [group, created] = await db.Group.findOrBuild({
           where: {
             platform: 'meetup',
-            platform_identifier
+            platform_identifier: platform_identifier
           }
         })
-
-        await group.update(groupDetails)
 
         if (created) {
           console.debug('Found a group that already exists in current DB.')
           fetchedExistingGroups = created
         }
+        await group.update(groupDetails)
       } catch (err) {
         console.warn('Failed to update group for:', err)
         Sentry.captureException(err)
