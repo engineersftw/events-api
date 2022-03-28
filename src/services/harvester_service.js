@@ -1,7 +1,7 @@
 const moment = require('moment-timezone')
 const htmlToText = require('html-to-text')
 const Sentry = require('@sentry/node')
-const { fetchMeetupGroups } = require('./utils/scraper')
+const { fetchMeetupGroups, cleanScraperCache } = require('./utils/scraper')
 const { getEventDetails } = require('./utils/eventParser')
 const { parseRSS, getRssUrlForGroup } = require('./utils/rssParser')
 const { getGroupDetails } = require('./utils/groupParser')
@@ -40,12 +40,10 @@ class HarvesterService {
   }
 
   async saveFetchedGroupsInDB (fetchedGroups) {
-    let fetchedExistingGroups = false
     const promises = Object.values(fetchedGroups).map(item => getGroupDetails(item.groupUrl))
     const fetchedGroupDetails = await Promise.all(promises)
 
-    console.debug(`Finished fetching groups...`)
-    for await (const groupDetails of fetchedGroupDetails) {
+    for (const groupDetails of fetchedGroupDetails) {
       try {
         // eslint-disable-next-line camelcase
         const { platform_identifier } = groupDetails
@@ -56,9 +54,9 @@ class HarvesterService {
           }
         })
 
-        if (created) {
+        if (!created) {
           console.debug('Found a group that already exists in current DB.')
-          fetchedExistingGroups = created
+          return true
         }
         await group.update(groupDetails)
       } catch (err) {
@@ -67,7 +65,7 @@ class HarvesterService {
       }
     }
 
-    return fetchedExistingGroups
+    return false
   }
 
   async fetchAndSaveItemsInDB () {
@@ -75,8 +73,9 @@ class HarvesterService {
     let fetchedExistingGroups = false
     let pageNumber = 0
     while (!fetchedExistingGroups) {
-      console.log(`Fetching 100 groups for page number ${pageNumber}`)
+      console.log(`Fetching the latest 100 groups — Page number ${pageNumber}`)
       const fetchedGroups = await this.fetchGroups({ pageNumber })
+      cleanScraperCache()
 
       fetchedExistingGroups = await this.saveFetchedGroupsInDB(fetchedGroups)
       console.debug(`Updated records for a total of ${100 * (pageNumber + 1)} groups`)
@@ -93,10 +92,9 @@ class HarvesterService {
     console.log(`Grabbing all upcoming events from rss...`)
     const groupsInDB = await db.Group.findAll({ where: { platform: 'meetup', blacklisted: false }, raw: true })
     const rssUrls = groupsInDB.map(group => getRssUrlForGroup(group.link))
-    console.log({ rssUrls })
     const listsOfGroupEvents = await this.fetchAllUpcomingEventsFromRss(rssUrls)
 
-    console.log(`Fetching event details for all upcoming events...`)
+    console.log(`Fetching event details for all upcoming events based on rss...`)
     const allGroupEvents = await this.fetchAllEventDetails(listsOfGroupEvents)
     console.log(`Harvested ${allGroupEvents.length} events`)
 

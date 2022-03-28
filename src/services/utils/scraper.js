@@ -1,5 +1,5 @@
 const scrape = require('website-scraper')
-const allGroups = {}
+let allGroups = {}
 
 class CustomPlugin {
   apply (registerAction) {
@@ -13,7 +13,6 @@ class CustomPlugin {
       }
       const groupKey = filename.replace('.html', '').split('-').join(' ')
       const formattedUrl = url.replace(/\/\?_cookie.*/, '')
-      console.debug(`fetched ${groupKey}`)
       allGroups[groupKey] = {
         groupUrl: formattedUrl
       }
@@ -45,4 +44,8 @@ const fetchMeetupGroups = async ({ pageNumber = 0, pageSize = 100 } = {}) => {
   return allGroups
 }
 
-module.exports = { fetchMeetupGroups, createGroupUrl }
+const cleanScraperCache = () => {
+  allGroups = {}
+}
+
+module.exports = { fetchMeetupGroups, createGroupUrl, cleanScraperCache }
