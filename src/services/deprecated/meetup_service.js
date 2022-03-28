@@ -1,7 +1,7 @@
 const axios = require('axios')
 const querystring = require('querystring')
 const Sentry = require('@sentry/node')
-const { blacklistedGroupUrls } = require('../../helpers/blacklist')
+const { blacklistedGroupUrls } = require('../../config/blacklist')
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
