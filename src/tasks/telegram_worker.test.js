@@ -1,6 +1,6 @@
 const moment = require('moment-timezone')
 const { filterEvents, processEvents, createFormattedMessage } = require('./telegram_worker')
-const { blacklistedGroupUrls, blacklistedGroups } = require('../config/blacklist')
+const { blacklistedGroups } = require('../config/blacklist')
 
 describe('createdFormattedMessage', () => {
   const baseEvent = {
@@ -52,65 +52,6 @@ describe('createdFormattedMessage', () => {
     expect(createFormattedMessage(event)).toEqual(
       `⏰ ${event.formatted_time} - ${event.name} (${event.group_name}) - 📍${event.location}`
     )
-  })
-})
-
-describe('filterEvents', () => {
-  it('undesired events should be filtered', () => {
-    const events = blacklistedGroups.map(group => ({ group_name: group }))
-    expect(events.filter(filterEvents)).toStrictEqual([])
-  })
-
-  it('events should be filtered and deduplicated after processing', () => {
-    const now = moment().tz('Asia/Singapore').format('h:mm a')
-
-    const events = [
-      {
-        name: 'a',
-        location: 'my house',
-        url: 'www.heymyhouse.com',
-        group_name: 'My House Group',
-        group_url: 'www.heymyhouse.com',
-        formatted_time: now
-      },
-      {
-        name: 'a',
-        location: 'my house',
-        url: 'www.heymyhouse.com',
-        group_name: 'My House Group',
-        group_url: 'www.heymyhouse.com',
-        formatted_time: now
-      },
-      {
-        name: 'b',
-        description: 'Explicit group name stated in blacklisted',
-        location: 'online',
-        url: 'www.heymyhouse.com',
-        group_name: 'EMF & Wireless Radiation Safety',
-        group_url: 'https://www.meetup.com/Wireless-devices-and-your-health/',
-        formatted_time: now
-      },
-      {
-        name: 'c',
-        description: 'A group name drived from blacklisted group urls',
-        location: 'online',
-        url: 'www.heymyhouse.com',
-        group_name: 'Kakis SG Anything Watever Meetup Group',
-        group_url: 'https://www.meetup.com/Wireless-devices-and-your-health/',
-        formatted_time: now
-      }
-    ]
-
-    expect(processEvents(events)).toStrictEqual([
-      {
-        name: 'a',
-        location: 'my house',
-        url: 'www.heymyhouse.com',
-        group_name: 'My House Group',
-        group_url: 'www.heymyhouse.com',
-        formatted_time: now
-      }
-    ])
   })
 })
 

@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { default: axios } = require('axios')
-const { blacklistedGroups } = require('../config/blacklist')
+const { isBlacklisted } = require('../config/blacklist')
 
 const token = process.env.TELEGRAM_BOT_TOKEN
 const chatId = Number(process.env.TELEGRAM_CHAT_ID)
@@ -27,10 +27,6 @@ async function fetchEvents (date) {
     })
 }
 
-function filterEvents (event) {
-  return !blacklistedGroups.includes(event.group_name)
-}
-
 function processEvents (events) {
   return events.map(event => {
     return {
@@ -42,7 +38,7 @@ function processEvents (events) {
       formatted_time: moment(event.start_time).tz('Asia/Singapore').format('h:mm a')
     }
   })
-    .filter(filterEvents)
+    .filter(event => !isBlacklisted(event.group_name))
     .filter((event, index, self) => {
       return index === self.findIndex((e) => (
         e.name === event.name &&
@@ -102,4 +98,4 @@ async function push () {
   }
 }
 
-module.exports = { push, filterEvents, processEvents, createFormattedMessage }
+module.exports = { push, processEvents, createFormattedMessage }
