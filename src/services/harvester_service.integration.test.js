@@ -3,7 +3,7 @@ const fetchedGroups = require('../../fixtures/fetchedGroups.json')
 const fetchedEventsFromRSS = require('../../fixtures/fetchedEventsFromRSS.json')
 const fetchedEventDetails = require('../../fixtures/fetchedEventDetails.json')
 const db = require('../models/index')
-
+const groupParser = require('./utils/groupParser')
 const testGroups = [
   {
     name: 'Serverless Singapore',
@@ -37,6 +37,7 @@ describe('Harvester Service', () => {
       .mockResolvedValue(fetchedEventsFromRSS)
     harvesterService.fetchAllEventDetails = jest.fn()
       .mockResolvedValue(fetchedEventDetails)
+    jest.spyOn(groupParser, 'getGroupDetails').mockReturnValue(testGroups.map(group => Promise.resolve(group)))
   })
 
   afterEach(async () => {
@@ -49,6 +50,7 @@ describe('Harvester Service', () => {
       truncate: true
     })
     jest.resetAllMocks()
+    jest.restoreAllMocks()
   })
 
   afterAll(async () => {
