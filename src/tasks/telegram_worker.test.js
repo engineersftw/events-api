@@ -1,6 +1,6 @@
 const moment = require('moment-timezone')
 const { filterEvents, processEvents, createFormattedMessage } = require('./telegram_worker')
-const { blacklistedGroupUrls } = require('../config/blacklist')
+const { blacklistedGroupUrls, blacklistedGroups } = require('../config/blacklist')
 
 describe('createdFormattedMessage', () => {
   const baseEvent = {
@@ -57,7 +57,7 @@ describe('createdFormattedMessage', () => {
 
 describe('filterEvents', () => {
   it('undesired events should be filtered', () => {
-    const events = blacklistedGroupUrls.map(groupUrl => ({ group_url: groupUrl }))
+    const events = blacklistedGroups.map(group => ({ group_name: group }))
     expect(events.filter(filterEvents)).toStrictEqual([])
   })
 
@@ -83,9 +83,19 @@ describe('filterEvents', () => {
       },
       {
         name: 'b',
-        location: 'my other house',
+        description: 'Explicit group name stated in blacklisted',
+        location: 'online',
         url: 'www.heymyhouse.com',
         group_name: 'EMF & Wireless Radiation Safety',
+        group_url: 'https://www.meetup.com/Wireless-devices-and-your-health/',
+        formatted_time: now
+      },
+      {
+        name: 'c',
+        description: 'A group name drived from blacklisted group urls',
+        location: 'online',
+        url: 'www.heymyhouse.com',
+        group_name: 'Kakis SG Anything Watever Meetup Group',
         group_url: 'https://www.meetup.com/Wireless-devices-and-your-health/',
         formatted_time: now
       }

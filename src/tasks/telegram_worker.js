@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { default: axios } = require('axios')
-const { blacklistedGroupUrls } = require('../config/blacklist')
+const { blacklistedGroups } = require('../config/blacklist')
 
 const token = process.env.TELEGRAM_BOT_TOKEN
 const chatId = Number(process.env.TELEGRAM_CHAT_ID)
@@ -28,7 +28,7 @@ async function fetchEvents (date) {
 }
 
 function filterEvents (event) {
-  return !blacklistedGroupUrls.includes(event.group_url)
+  return !blacklistedGroups.includes(event.group_name)
 }
 
 function processEvents (events) {

@@ -17,4 +17,12 @@ const blacklistedGroupUrls = [
   'https://www.meetup.com/Never-Code-Alone-SG'
 ]
 
-module.exports = { blacklistedGroupUrls }
+const blacklistedGroups = [
+  ...blacklistedGroupUrls.map(url =>
+    url
+      .replace('https://www.meetup.com/', '')
+      .replaceAll('-', ' ')),
+  'EMF & Wireless Radiation Safety'
+]
+
+module.exports = { blacklistedGroupUrls, blacklistedGroups }
