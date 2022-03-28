@@ -1,5 +1,4 @@
 const scrape = require('website-scraper')
-
 const allGroups = {}
 
 class CustomPlugin {
@@ -16,8 +15,7 @@ class CustomPlugin {
       const formattedUrl = url.replace(/\/\?_cookie.*/, '')
       console.debug(`fetched ${groupKey}`)
       allGroups[groupKey] = {
-        groupUrl: formattedUrl,
-        eventsUrl: `${formattedUrl}events/rss`
+        groupUrl: formattedUrl
       }
     })
   }

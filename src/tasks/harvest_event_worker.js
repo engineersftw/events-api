@@ -10,7 +10,7 @@ const harvester = require('../services/harvester_service')
 async function start () {
   console.log(`Starting harvest!`)
   console.log('=====================================================')
-  harvester.saveEventsIntoDB()
+  harvester.fetchAndSaveItemsInDB()
 }
 
 start()
