@@ -23,7 +23,7 @@ class CustomPlugin {
   }
 }
 
-const meetupGroupOptions = {
+const baseMeetupGroupOptions = {
   urls: [
     'https://www.meetup.com/cities/sg/singapore/tech/?country=sg&zipstatecity=singapore&category_names=tech&sort=founded_date'
   ],
@@ -32,12 +32,19 @@ const meetupGroupOptions = {
   sources: [{ selector: '.groupCard.noRatings>div>a', attr: 'href' }]
 }
 
-const fetchMeetupGroups = async () => {
-  await scrape(meetupGroupOptions)
+const createGroupUrl = ({ pageNumber, pageSize }) =>
+  `https://www.meetup.com/cities/sg/singapore/tech/?pageToken=founded_date%7c${pageNumber * pageSize}&country=sg&zipstatecity=singapore&category_names=tech&sort=founded_date`
+
+const fetchMeetupGroups = async ({ pageNumber = 0, pageSize = 100 } = {}) => {
+  await scrape({
+    ...baseMeetupGroupOptions,
+    urls: [
+      createGroupUrl({ pageNumber, pageSize })
+    ] })
   console.log(
     `Finished scrapping! ${Object.keys(allGroups).length} groups are found.`
   )
   return allGroups
 }
 
-module.exports = { fetchMeetupGroups }
+module.exports = { fetchMeetupGroups, createGroupUrl }

@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
   })
 }
 class HarvesterService {
-  async fetchGroupsWithRss () {
+  async fetchGroups () {
     try {
       return await fetchMeetupGroups()
     } catch (err) {

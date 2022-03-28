@@ -6,7 +6,7 @@ const db = require('../models/index')
 
 describe('Harvester Service', () => {
   beforeEach(() => {
-    harvesterService.fetchGroupsWithRss = jest.fn()
+    harvesterService.fetchGroups = jest.fn()
       .mockResolvedValueOnce(fetchedGroupsWithRSS)
     harvesterService.fetchAllUpcomingEventsFromRss = jest.fn()
       .mockResolvedValueOnce(fetchedEventsFromRSS)
