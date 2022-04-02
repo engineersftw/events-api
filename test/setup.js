@@ -4,3 +4,7 @@ require('dotenv').config()
 process.env.MEETUP_OAUTH_KEY = 'my_key'
 process.env.MEETUP_OAUTH_SECRET = 'my_secret'
 process.env.MEETUP_REFRESH_TOKEN = 'my_refresh_token'
+
+const { TextEncoder, TextDecoder } = require('util')
+global.TextEncoder = TextEncoder
+global.TextDecoder = TextDecoder

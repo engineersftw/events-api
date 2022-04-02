@@ -1,0 +1,8 @@
+{
+    "group({\"id\":36234314})": {
+        "type": "id",
+        "generated": true,
+        "id": "$ROOT_QUERY.group({\"id\":36234314})",
+        "typename": "Group"
+    }
+}

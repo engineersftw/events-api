@@ -1,0 +1,1346 @@
+
+[
+    {
+        "id": "284319391",
+        "name": "Cloud Native Apache Kafka",
+        "eventUrl": "https://www.meetup.com/Serverless-Singapore/events/284319391",
+        "description": "In our second talk of the year coming up on Thu, 17 March, we will be joined by Mark Teehan from Confluent.\n\nMark will talk about the lessons learned by the Confluent Cloud engineering team from making Apache Kafka serverless as well as deployment decisions to run mission critical Confluent Cloud clusters on any of the major cloud providers in Singapore (or elsewhere).\n\nHere are the details:\n\nTitle: Cloud Native Apache Kafka®\n\nSpeaker Bio: Mark Teehan is a systems engineer at Confluent in Singapore. In his day-to-day work, Mark engages with organisations that are interested in event streaming, real-time ETL, or anything related to running Apache Kafka systems. Interest in Apache Kafka spans banks, telcos, airlines, digital natives, government departments, insurance, and manufacturing.\n\nDate: Thursday, 17 March 2022\n\nTime: 7 pm onward SGT\n\nFormat: This will be an online event on Zoom. To ensure safe usage, link required for joining the event will be visible only to the folks who register interest to attend the event.\n\nAs always, the floor is open for each one of you to share your valuable experiences on serverless with the community. Please feel free to drop me a line if you are interested in giving a talk at this or a future meetup. It'll be great to hear from you on what all you are learning and building with serverless.\n\nSee you then!",
+        "startTime": "2022-03-17T19:00+08:00",
+        "endTime": "2022-03-17T20:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Serverless-Singapore/events/284319391/",
+        "group": {
+            "__typename": "Group",
+            "id": "20291544",
+            "name": "Serverless Singapore",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Serverless-Singapore",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "1509702",
+                    "urlkey": "serverless-architecture",
+                    "name": "Serverless Architecture"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "661712",
+                    "urlkey": "amazon-web-services",
+                    "name": "Amazon Web Services"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "140157",
+                    "urlkey": "microsoft-azure",
+                    "name": "Microsoft Azure"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "1508781",
+                    "urlkey": "devops-automation",
+                    "name": "DevOps Automation"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "15582",
+                    "urlkey": "web-development",
+                    "name": "Web Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "24410",
+                    "urlkey": "high-scalability-computing",
+                    "name": "High Scalability Computing"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "87614",
+                    "urlkey": "devops",
+                    "name": "DevOps"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "15167",
+                    "urlkey": "cloud-computing",
+                    "name": "Cloud Computing"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "33089",
+                    "urlkey": "saas-software-as-a-service-",
+                    "name": "SaaS (Software as a Service)"
+                }
+            ],
+            "urlname": "Serverless-Singapore",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": true,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 1391
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "470330912",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "https://us02web.zoom.us/j/86393167910?pwd=cEY3Z2F4N1VRbWYxU0JleFZrcUxSQT09",
+        "yes_rsvp_count": 40
+    },
+    {
+        "id": "284601831",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/284601831",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-03-20T10:30+08:00",
+        "endTime": "2022-03-20T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/284601831/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydcfbkc",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcfbkc",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-03-27T10:30+08:00",
+        "endTime": "2022-03-27T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcfbkc/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydcgbfb",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbfb",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-04-03T10:30+08:00",
+        "endTime": "2022-04-03T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbfb/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydcgbnb",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbnb",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-04-10T10:30+08:00",
+        "endTime": "2022-04-10T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbnb/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydcgbwb",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbwb",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-04-17T10:30+08:00",
+        "endTime": "2022-04-17T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbwb/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydcgbgc",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbgc",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-04-24T10:30+08:00",
+        "endTime": "2022-04-24T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydcgbgc/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydchbcb",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchbcb",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-05-01T10:30+08:00",
+        "endTime": "2022-05-01T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchbcb/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydchblb",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchblb",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-05-08T10:30+08:00",
+        "endTime": "2022-05-08T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchblb/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydchbtb",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchbtb",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-05-15T10:30+08:00",
+        "endTime": "2022-05-15T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchbtb/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    },
+    {
+        "id": "swjjsrydchbdc",
+        "name": "🇸🇬Weekly coding contest club 💻",
+        "eventUrl": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchbdc",
+        "description": "Join the weekly LeetCode Contest with us, and share your thoughts or ask any data structure & algorithm questions!\n\n- Link to weekly contest: https://leetcode.com/contest/\n- Singapore LeetCode club Telegram channel: https://t.me/joinchat/Fw8GcRX8wCX8uCir5ogjMA\n\n- Join the contest and finish the problems, as much and as quickly as you can!\n- Come on-site and sit with us, or do the contest at your place\n- Ask questions, what's the complexity? Met a TLE? How to solve it???\n- Share your answers with explanation, more sharing means more improvement :)\n- Sit with other coders together (if we have a venue set up), or discuss in our Telegram channel.\n\nHappy coding!",
+        "startTime": "2022-05-22T10:30+08:00",
+        "endTime": "2022-05-22T12:00+08:00",
+        "isOnline": true,
+        "url": "https://www.meetup.com/Singapore-LeetCode/events/swjjsrydchbdc/",
+        "group": {
+            "__typename": "Group",
+            "id": "33264919",
+            "name": "LeetCode Club SG",
+            "isPrivate": false,
+            "link": "https://www.meetup.com/Singapore-LeetCode",
+            "joinMode": "OPEN",
+            "topicCategory": {
+                "__typename": "TopicCategory",
+                "id": "546",
+                "name": "Technology",
+                "urlkey": "technology"
+            },
+            "topics": [
+                {
+                    "__typename": "Topic",
+                    "id": "15556",
+                    "urlkey": "career-network",
+                    "name": "Career Network"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "103276",
+                    "urlkey": "computer-science",
+                    "name": "Computer Science"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "962132",
+                    "urlkey": "algorithms-computational-theory",
+                    "name": "Algorithms & Computational Theory"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "8192",
+                    "urlkey": "open-source",
+                    "name": "Open Source"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "120095",
+                    "urlkey": "software-development",
+                    "name": "Software Development"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "32528",
+                    "urlkey": "computer-programming",
+                    "name": "Computer Programming"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "57349",
+                    "urlkey": "algorithms",
+                    "name": "Algorithms"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "193031",
+                    "urlkey": "data-structures",
+                    "name": "Data Structures"
+                },
+                {
+                    "__typename": "Topic",
+                    "id": "92552",
+                    "urlkey": "job-interview-prep",
+                    "name": "Job Interview Prep"
+                }
+            ],
+            "urlname": "Singapore-LeetCode",
+            "country": "sg",
+            "isPrimaryOrganizer": false,
+            "isOrganizer": false,
+            "isMember": false,
+            "needsPhoto": false,
+            "proNetwork": null,
+            "stats": {
+                "__typename": "GroupStats",
+                "memberCounts": {
+                    "__typename": "GroupMemberCounts",
+                    "all": 400
+                }
+            },
+            "needsQuestions": false,
+            "membershipDues": null,
+            "duesSettings": null,
+            "membershipMetadata": null,
+            "questions": [],
+            "sponsors": {
+                "__typename": "GroupSponsorConnection",
+                "edges": []
+            },
+            "groupPhoto": {
+                "__typename": "Image",
+                "id": "488587591",
+                "baseUrl": "https://secure-content.meetupstatic.com/images/classic-events/"
+            },
+            "stepUpInfo": null
+        },
+        "venue": {
+            "__typename": "Venue",
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "lat": -8.521147,
+            "lng": 179.1962
+        },
+        "howToFindUs": "",
+        "yes_rsvp_count": 1
+    }
+]
