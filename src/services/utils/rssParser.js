@@ -1,6 +1,10 @@
 const Parser = require('rss-parser')
 const parser = new Parser()
 
+const getRssUrlForGroup = (groupUrl) => {
+  return `${groupUrl}events/rss`
+}
+
 const parseRSS = async (url) => {
   try {
     console.debug(`Attempting parse RSS for: ${url}`)
@@ -17,4 +21,4 @@ const parseRSS = async (url) => {
   }
 }
 
-module.exports = { parseRSS }
+module.exports = { parseRSS, getRssUrlForGroup }

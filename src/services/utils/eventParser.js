@@ -4,6 +4,7 @@ const { JSDOM } = require('jsdom')
 const getEventDetails = async (eventGuid) => {
   const response = await axios.get(eventGuid)
   if (response.status !== 200) {
+    console.warn(`Fail to get retrieve event details for: ${eventGuid}`)
     return
   }
   const { data } = response
